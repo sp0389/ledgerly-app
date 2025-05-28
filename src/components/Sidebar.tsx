@@ -1,4 +1,4 @@
-interface SidebarProps{}
+interface SidebarProps { }
 
 const Sidebar: React.FC<SidebarProps> = () => {
   return (
