@@ -34,6 +34,12 @@ const Sidebar: React.FC<SidebarProps> = () => {
                   Reports
                 </a>
               </li>
+              <li>
+                <a href="/test">
+                  <span className="icon-[tabler--mail] size-5"></span>
+                  Test
+                </a>
+              </li>
             </ul>
           </div>
         </aside>

@@ -1,27 +1,16 @@
-import BarChart from "./components/Chart";
-import Card from "./components/Card";
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
+import { BrowserRouter, Routes, Route } from "react-router";
+import Home from "./assets/pages/Home";
+import Test from "./assets/pages/Test";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <Navbar />
-      <div className="flex p-4">
-        <Sidebar />
-        <div className="flex-1 grid grid-cols-4 gap-2">
-          <Card />
-          <Card />
-          <Card />
-          <div className="col-span-3">
-            <BarChart />
-          </div>
-        </div>
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}/>
+        <Route path="test" element={<Test />}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-
 
 export default App;
