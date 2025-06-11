@@ -50,3 +50,45 @@ export async function getBudgetCategories(): Promise<BudgetCategory[]> {
   
   return await response.json();
 }
+
+export async function createTransaction(transaction: Transaction):Promise<boolean>{
+  const url = new URL(`api/Finance/Transaction/CreateTransaction${transaction}`, baseUrl);
+  const response = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(transaction)
+  });
+
+  if(!response.ok){
+    throw new Error(`There was an error creating the transaction. ${response.status}`);
+  }
+
+  return true;
+}
+
+export async function updateTransaction(transaction: Transaction):Promise<boolean>{
+  const url = new URL(`api/Finance/Transaction/UpdateTransaction/${transaction}`, baseUrl);
+  const response = await fetch(url, {
+    method: 'PUT',
+    body: JSON.stringify(transaction)
+  });
+
+  if(!response.ok){
+    throw new Error(`There was an error updating the transaction. ${response.status}`);
+  }
+  
+  return true;
+}
+
+export async function deleteTransaction(transactionId: number):Promise<boolean>{
+  const url = new URL(`api/Finance/Transaction/DeleteTransaction/${transactionId}`);
+  const response = await fetch(url, {
+    method: 'DELETE',
+    body: JSON.stringify(transactionId)
+  });
+
+  if(!response.ok){
+    throw new Error(`There was an error deleting the transaction with the provided ID ${response.status}`);
+  }
+
+  return true;
+}

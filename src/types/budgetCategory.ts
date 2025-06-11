@@ -10,7 +10,7 @@ export interface BudgetCategory {
   Transactions: Transaction[];
 }
 
-enum CategoryType {
+export enum CategoryType {
   Utilities,
   Entertainment,
   Groceries,
