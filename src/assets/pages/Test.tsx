@@ -6,7 +6,7 @@ const Test = () => {
 		<Layout>
 			<TransactionInput />
 		</Layout>
-		)
+	)
 }
 
 export default Test;

@@ -13,7 +13,7 @@ export interface Transaction {
   BudgetCategory: BudgetCategory;
 }
 
-enum TransactionType {
+export enum TransactionType {
   Income,
   Expense
 }
