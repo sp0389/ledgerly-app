@@ -18,7 +18,7 @@ export enum TransactionType {
   Expense
 }
 
-enum DayOfWeek {
+export enum DayOfWeek {
   Sunday = 0,
   Monday = 1,
   Tuesday = 2,

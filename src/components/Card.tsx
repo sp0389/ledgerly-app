@@ -1,9 +1,9 @@
 interface CardProps {
-  title: string
-  amount: number
+  title: string;
+  amount: number;
 }
 
-const Card: React.FC<CardProps> = ({title, amount}) => {
+const Card: React.FC<CardProps> = ({ title, amount }) => {
   return (
     <div>
       <div className="card w-full">
@@ -16,6 +16,6 @@ const Card: React.FC<CardProps> = ({title, amount}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 export default Card;
