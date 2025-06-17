@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { DayOfWeek, TransactionType } from "../types/transaction";
+import { CategoryType } from "../types/budgetCategory";
 import React from "react";
 import Flatpickr from "react-flatpickr";
 
@@ -16,6 +17,9 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [hasEndDate, setHasEndDate] = useState<boolean>(false);
   const [days, setDays] = useState<string[]>([]);
+  const [hasBudgetCategory, setHasBudgetCategory] = useState<boolean>(false);
+  const [selectedBudgetCategory, setSelectedBudgetCategory] =
+    useState<CategoryType | null>(null);
 
   const handleSubmit = () => {
     //TODO: Handle submit case
@@ -45,8 +49,8 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
     setEndDate(input);
   };
 
-  const handleTransactionType = (input: number) => {
-    input == 1
+  const handleTransactionType = (input: string) => {
+    input == "Expense"
       ? setTransactionType(TransactionType.Expense)
       : setTransactionType(TransactionType.Income);
   };
@@ -57,9 +61,39 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
       : setDays(days.filter((day) => day !== e.target.value));
   };
 
+  const handleBudgetCategory = (input: string) => {
+    switch (input) {
+      case "Entertainment":
+        setSelectedBudgetCategory(CategoryType.Entertainment);
+        break;
+      case "Utilities":
+        setSelectedBudgetCategory(CategoryType.Utilities);
+        break;
+      case "Groceries":
+        setSelectedBudgetCategory(CategoryType.Groceries);
+        break;
+      case "EatingOut":
+        setSelectedBudgetCategory(CategoryType.EatingOut);
+        break;
+      case "Transportation":
+        setSelectedBudgetCategory(CategoryType.Transportation);
+        break;
+      case "Housing":
+        setSelectedBudgetCategory(CategoryType.Housing);
+        break;
+      case "Health":
+        setSelectedBudgetCategory(CategoryType.Health);
+        break;
+      case "Savings":
+        setSelectedBudgetCategory(CategoryType.Savings);
+        break;
+    }
+  };
+
+  //TODO: Remove later
   useEffect(() => {
-    console.log(days);
-  }, [days]);
+    console.log(selectedBudgetCategory);
+  }, [selectedBudgetCategory]);
 
   return (
     <>
@@ -147,18 +181,50 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
               <div className="mt-2">
                 <label className="label-text">Select Days</label>
                 {Object.keys(DayOfWeek)
-                  .filter((value) => isNaN(Number(value)))
-                  .map((value) => (
-                    <div key={value}>
+                  .filter((day) => isNaN(Number(day)))
+                  .map((day) => (
+                    <div key={day}>
                       <input
                         type="checkbox"
-                        value={value}
+                        value={day}
                         onChange={(e) => handleDayOfWeek(e)}
                       />
-                      <label> {value}</label>
+                      <label> {day}</label>
                     </div>
                   ))}
               </div>
+            </div>
+          )}
+
+          <div className="flex items-center gap-1 mt-2">
+            <input
+              type="checkbox"
+              className="checkbox"
+              onChange={(e) => {
+                setHasBudgetCategory(e.target.checked);
+              }}
+            />
+            <label className="label-text" htmlFor="checkBox">
+              Add to Budget Category?
+            </label>
+          </div>
+
+          {hasBudgetCategory && (
+            <div className="mt-2">
+              <label className="label-text inline">
+                Budget Category:
+                <span>&nbsp;&nbsp;</span>
+                <select onChange={(e) => handleBudgetCategory(e.target.value)}>
+                  <option>Select</option>
+                  {Object.keys(CategoryType)
+                    .filter((category) => isNaN(Number(category)))
+                    .map((category) => (
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
+                    ))}
+                </select>
+              </label>
             </div>
           )}
 
@@ -166,19 +232,22 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
             <label className="label-text">
               Type:
               <span>&nbsp;&nbsp;</span>
-              <select
-                value={transactionType}
-                onChange={(e) =>
-                  handleTransactionType(parseInt(e.target.value))
-                }
-              >
-                <option value={TransactionType.Income}>Income</option>
-                <option value={TransactionType.Expense}>Expense</option>
+              <select onChange={(e) => handleTransactionType(e.target.value)}>
+                {Object.keys(TransactionType)
+                  .filter((transactionType) => isNaN(Number(transactionType)))
+                  .map((transactionType) => (
+                    <option key={transactionType} value={transactionType}>
+                      {transactionType}
+                    </option>
+                  ))}
               </select>
             </label>
           </div>
 
-          <button className="btn btn-primary btn-block" onClick={handleSubmit}>
+          <button
+            className="btn btn-primary btn-block mt-2"
+            onClick={handleSubmit}
+          >
             Submit
           </button>
         </div>
