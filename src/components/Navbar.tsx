@@ -2,7 +2,7 @@ interface NavBarProps {}
 
 const Navbar: React.FC<NavBarProps> = () => {
   return (
-    <nav className="navbar shadow-base-300/20 shadow-sm fixed bg-base-100 border-base-content/10 border-b sticky top-0 z-50 w-full">
+    <nav className="navbar shadow-base-300/20 shadow-sm bg-base-100 border-base-content/10 border-b sticky top-0 z-50 w-full">
       <div className="w-full md:flex md:items-center md:gap-2">
         <div className="flex items-center justify-between">
           <div className="navbar-start items-center justify-between max-md:w-full">
