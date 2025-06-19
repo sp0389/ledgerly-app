@@ -1,4 +1,4 @@
-import { DayOfWeek } from "../types/transaction";
+import { DayOfWeek } from "../../types/transaction";
 
 interface DaySelectorProps {
   label: string;

@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { TransactionType } from "../types/transaction";
 import { CategoryType } from "../types/budgetCategory";
 import React from "react";
-import DescriptionInput from "./DescriptionInput";
-import AmountInput from "./AmountInput";
-import StartDateInput from "./StartDateInput";
-import CheckBoxInput from "./CheckboxInput";
-import DaySelector from "./DaySelector";
-import BudgetCategorySelector from "./BudgetCategorySelector";
-import TransactionTypeSelector from "./TransactionTypeSelector";
-import EndDateInput from "./EndDateInput";
+import ErrorPrompt from "./TransactionInput/ErrorPrompt";
+import DescriptionInput from "./TransactionInput/DescriptionInput";
+import AmountInput from "./TransactionInput/AmountInput";
+import StartDateInput from "./TransactionInput/StartDateInput";
+import CheckBoxInput from "./TransactionInput/CheckboxInput";
+import EndDateInput from "./TransactionInput/EndDateInput";
+import DaySelector from "./TransactionInput/DaySelector";
+import BudgetCategorySelector from "./TransactionInput/BudgetCategorySelector";
+import TransactionTypeSelector from "./TransactionInput/TransactionTypeSelector";
 
 interface TransactionInputProps {}
 
@@ -40,9 +41,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
   return (
     <>
       {error != "" && (
-        <div className="alert alert-soft alert-error mb-3" role="alert">
-          {error}
-        </div>
+        <ErrorPrompt value={error}/>
       )}
 
       <DescriptionInput value={description} onChange={setDescription} />

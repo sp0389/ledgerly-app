@@ -1,4 +1,4 @@
-import { CategoryType } from "../types/budgetCategory";
+import { CategoryType } from "../../types/budgetCategory";
 
 interface BudgetCategorySelectorProps {
   onChange: (val: CategoryType) => void;

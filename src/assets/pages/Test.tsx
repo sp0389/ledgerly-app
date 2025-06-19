@@ -1,5 +1,5 @@
-import TransactionInput from '../../components/Input';
-import Layout from '../../components/Layout';
+import Layout from '../../components/Layout'
+import TransactionInput from '../../components/TransactionInput';
 
 const Test = () => {
 	return (

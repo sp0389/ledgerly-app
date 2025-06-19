@@ -1,4 +1,4 @@
-import { TransactionType } from "../types/transaction";
+import { TransactionType } from "../../types/transaction";
 
 interface TransactionTypeSelectorProps {
   onChange: (val: TransactionType) => void;
