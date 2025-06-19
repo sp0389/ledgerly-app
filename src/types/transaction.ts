@@ -1,4 +1,4 @@
-import type { BudgetCategory } from "./budgetCategory";
+import { type BudgetCategory } from "./budgetCategory";
 
 export interface Transaction {
   Id: number;
@@ -10,7 +10,7 @@ export interface Transaction {
   Description: string;
   SelectedDays: DayOfWeek[];
   TransactionType: TransactionType;
-  BudgetCategory: BudgetCategory;
+  BudgetCategory: BudgetCategory[];
 }
 
 export enum TransactionType {
