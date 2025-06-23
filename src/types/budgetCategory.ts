@@ -6,7 +6,7 @@ export interface BudgetCategory {
   StartDate: Date;
   EndDate?: Date;
   Description: string;
-  CategoryType: CategoryType;
+  CategoryType?: CategoryType;
   Transactions: Transaction[];
 }
 

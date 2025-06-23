@@ -1,16 +1,17 @@
-import { type BudgetCategory } from "./budgetCategory";
+import { CategoryType, type BudgetCategory } from "./budgetCategory";
 
 export interface Transaction {
-  Id: number;
+  Id?: number;
   Amount: number;
   Date: Date;
   IsRecurring: boolean;
   EndDate?: Date;
-  Occurrences?: number;
+  Occurrences: number;
   Description: string;
-  SelectedDays: DayOfWeek[];
+  SelectedDays: string[];
   TransactionType: TransactionType;
-  BudgetCategory: BudgetCategory[];
+  CategoryType?: CategoryType;
+  BudgetCategory?: BudgetCategory;
 }
 
 export enum TransactionType {

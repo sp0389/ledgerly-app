@@ -7,8 +7,8 @@ interface DateInputProps {
 }
 
 const StartDateInput: React.FC<DateInputProps> = ({
-  value,
   onChange,
+  value,
   label,
 }) => {
   return (

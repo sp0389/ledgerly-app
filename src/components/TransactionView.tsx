@@ -4,8 +4,7 @@ interface TransactionViewProps {
   transaction: Transaction[];
 }
 
-const TransactionView: React.FC<TransactionViewProps> = ( {transaction} ) => {
-  
+const TransactionView: React.FC<TransactionViewProps> = ({ transaction }) => {
   //TODO: Move to parent
 
   // const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -39,44 +38,36 @@ const TransactionView: React.FC<TransactionViewProps> = ( {transaction} ) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              {transaction.map((t) => (
-                <>
-                  <td key={t.Id}>{t.Id}</td>
-                  <td key={t.Amount}>{t.Amount}</td>
-                  <td key={t.Date.toLocaleDateString()}>
-                    {t.Date.toLocaleDateString()}
-                  </td>
-                  <td key={t.Date.toLocaleDateString()}>
-                    {t.Date.toLocaleDateString()}
-                  </td>
-                  <td key={t.TransactionType}>{t.TransactionType}</td>
-                  {t.BudgetCategory.map((bc) => (
-                    <td key={bc.CategoryType}>{bc.CategoryType}</td>
-                  ))}
-                </>
-              ))}
-              <td>
-                <button
-                  className="btn btn-circle btn-text btn-sm"
-                  aria-label="Action button"
-                >
-                  <span className="icon-[tabler--pencil] size-5"></span>
-                </button>
-                <button
-                  className="btn btn-circle btn-text btn-sm"
-                  aria-label="Action button"
-                >
-                  <span className="icon-[tabler--trash] size-5"></span>
-                </button>
-                <button
-                  className="btn btn-circle btn-text btn-sm"
-                  aria-label="Action button"
-                >
-                  <span className="icon-[tabler--dots-vertical] size-5"></span>
-                </button>
-              </td>
-            </tr>
+            {transaction.map((t) => (
+              <tr key={t.Id}>
+                <td>{t.Id}</td>
+                <td>{t.Amount}</td>
+                <td>{t.Date.toLocaleDateString()}</td>
+                <td>{t.Description}</td>
+                <td>{t.TransactionType}</td>
+                <td>{t.BudgetCategory?.CategoryType}</td>
+                <td>
+                  <button
+                    className="btn btn-circle btn-text btn-sm"
+                    aria-label="Action button"
+                  >
+                    <span className="icon-[tabler--pencil] size-5"></span>
+                  </button>
+                  <button
+                    className="btn btn-circle btn-text btn-sm"
+                    aria-label="Action button"
+                  >
+                    <span className="icon-[tabler--trash] size-5"></span>
+                  </button>
+                  <button
+                    className="btn btn-circle btn-text btn-sm"
+                    aria-label="Action button"
+                  >
+                    <span className="icon-[tabler--dots-vertical] size-5"></span>
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
