@@ -1,14 +1,20 @@
 import { CategoryType } from "../../types/budgetCategory";
+import { type BudgetCategory } from "../../types/budgetCategory";
+import ErrorPrompt from "./ErrorPrompt";
+
+// REWORK -- fetch the budget categories from API.
 
 interface BudgetCategorySelectorProps {
   onChange: (val: CategoryType) => void;
+  budgetCategory: BudgetCategory[] | undefined;
 }
 
 const BudgetCategorySelector: React.FC<BudgetCategorySelectorProps> = ({
   onChange,
+  budgetCategory,
 }) => {
-  const handleBudgetCategory = (input: string) => {
-    switch (input) {
+  const handleBudgetCategory = (categoryType: string) => {
+    switch (categoryType) {
       case "Entertainment":
         onChange(CategoryType.Entertainment);
         break;
@@ -41,16 +47,17 @@ const BudgetCategorySelector: React.FC<BudgetCategorySelectorProps> = ({
       <label className="label-text inline">
         Budget Category:
         <span>&nbsp;&nbsp;</span>
-        <select onChange={(e) => handleBudgetCategory(e.target.value)}>
-          <option>Select</option>
-          {Object.keys(CategoryType)
-            .filter((category) => isNaN(Number(category)))
-            .map((category) => (
-              <option key={category} value={category}>
-                {category}
+        {budgetCategory === undefined ? (
+          <ErrorPrompt value={"Please create a budget category first."} />
+        ) : (
+          <select onChange={(e) => handleBudgetCategory(e.target.value)}>
+            {budgetCategory.map((bc) => (
+              <option key={bc.Id} value={bc.CategoryType}>
+                {bc.CategoryType}
               </option>
             ))}
-        </select>
+          </select>
+        )}
       </label>
     </div>
   );

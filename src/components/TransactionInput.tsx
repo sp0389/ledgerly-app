@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { TransactionType, type Transaction } from "../types/transaction";
-import { CategoryType } from "../types/budgetCategory";
+import { type BudgetCategory, CategoryType } from "../types/budgetCategory";
 import React from "react";
 import ErrorPrompt from "./TransactionInput/ErrorPrompt";
 import DescriptionInput from "./TransactionInput/DescriptionInput";
@@ -34,6 +34,9 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
     CategoryType | undefined
   >(undefined);
 
+  //TEST -- set as undefined first so the error message displays to the user
+  const [budgetCategory, setBudgetCategory] = useState<BudgetCategory[] | undefined>(undefined);
+
   const handleSubmit = async () => {
     try {
       const transaction: Transaction = {
@@ -55,10 +58,30 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
     }
   };
 
-  //TODO: Remove later
+  //TODO: Remove later (Dummy data)
   useEffect(() => {
-    console.log(occurrences);
-  }, [occurrences]);
+     
+    const bc1: BudgetCategory = {
+      Id: 1,
+      Amount: 1000,
+      StartDate: new Date(),
+      Description: "A budget category description.",
+      CategoryType: CategoryType.Entertainment,
+      Transactions: []
+    }
+
+    const bc2: BudgetCategory = {
+      Id: 2,
+      Amount: 2000,
+      StartDate: new Date(),
+      Description: "Another budget category description.",
+      CategoryType: CategoryType.Groceries,
+      Transactions: []
+    }
+
+    setBudgetCategory([bc1, bc2]);
+
+  }, []);
 
   return (
     <>
@@ -105,7 +128,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
       />
 
       {hasBudgetCategory && (
-        <BudgetCategorySelector onChange={setSelectedBudgetCategory} />
+        <BudgetCategorySelector budgetCategory={budgetCategory} onChange={setSelectedBudgetCategory} />
       )}
 
       <TransactionTypeSelector onChange={setTransactionType} />

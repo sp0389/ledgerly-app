@@ -11,12 +11,12 @@ export interface BudgetCategory {
 }
 
 export enum CategoryType {
-  Utilities,
-  Entertainment,
-  Groceries,
-  EatingOut,
-  Transportation,
-  Housing,
-  Health,
-  Savings
+  Utilities = "Utiliites",
+  Entertainment = "Entertainment",
+  Groceries = "Groceries",
+  EatingOut = "Eating Out",
+  Transportation = "Transportation",
+  Housing = "Housing",
+  Health = "Health",
+  Savings = "Savings"
 }

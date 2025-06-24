@@ -1,7 +1,7 @@
 import { type Transaction } from "../types/transaction";
 
 interface TransactionViewProps {
-  transaction: Transaction[];
+  transaction: Transaction[]
 }
 
 const TransactionView: React.FC<TransactionViewProps> = ({ transaction }) => {
