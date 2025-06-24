@@ -1,6 +1,7 @@
 // import { useEffect, useState } from "react";
+import BudgetCategoryInput from "../../components/BudgetCategory/BudgetCategoryInput";
 import Layout from "../../components/Layout";
-import TransactionInput from '../../components/TransactionInput';
+import TransactionInput from '../../components/Transaction/TransactionInput';
 // import TransactionView from "../../components/TransactionView";
 // import { type Transaction, TransactionType } from "../../types/transaction";
 // import { CategoryType } from "../../types/budgetCategory";
@@ -54,8 +55,9 @@ const Test = () => {
 
   return (
     <Layout>
-      <TransactionInput />
+      {/* <TransactionInput /> */}
       {/* <TransactionView transaction={transaction} /> */}
+      <BudgetCategoryInput />
     </Layout>
   );
 };

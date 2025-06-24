@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { TransactionType, type Transaction } from "../types/transaction";
-import { type BudgetCategory, CategoryType } from "../types/budgetCategory";
+import { TransactionType, type Transaction } from "../../types/transaction";
+import { type BudgetCategory, CategoryType } from "../../types/budgetCategory";
 import React from "react";
-import ErrorPrompt from "./TransactionInput/ErrorPrompt";
-import DescriptionInput from "./TransactionInput/DescriptionInput";
-import AmountInput from "./TransactionInput/AmountInput";
-import StartDateInput from "./TransactionInput/StartDateInput";
-import OccurrenceSelector from "./TransactionInput/OccurrenceSelector";
-import CheckBoxInput from "./TransactionInput/CheckboxInput";
-import EndDateInput from "./TransactionInput/EndDateInput";
-import DaySelector from "./TransactionInput/DaySelector";
-import BudgetCategorySelector from "./TransactionInput/BudgetCategorySelector";
-import TransactionTypeSelector from "./TransactionInput/TransactionTypeSelector";
-import { createTransaction } from "../services/financeService";
+import ErrorPrompt from "../Input/ErrorPrompt";
+import DescriptionInput from "../Input/DescriptionInput";
+import AmountInput from "../Input/AmountInput";
+import StartDateInput from "../Input/StartDateInput";
+import OccurrenceSelector from "../Input/OccurrenceSelector";
+import CheckBoxInput from "../Input/CheckboxInput";
+import EndDateInput from "../Input/EndDateInput";
+import DaySelector from "../Input/DaySelector";
+import BudgetCategorySelector from "../Input/BudgetCategorySelector";
+import TransactionTypeSelector from "../Input/TransactionTypeSelector";
+import { createTransaction } from "../../services/financeService";
 
 interface TransactionInputProps {}
 
@@ -26,7 +26,6 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [occurrences, setOccurrences] = useState<number>(0);
   const [endDate, setEndDate] = useState<Date>(new Date());
-  const [hasEndDate, setHasEndDate] = useState<boolean>(false);
   const [isRecurring, setIsRecurring] = useState<boolean>(false);
   const [days, setDays] = useState<string[]>([]);
   const [hasBudgetCategory, setHasBudgetCategory] = useState<boolean>(false);
@@ -43,7 +42,6 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
         Amount: amount,
         Date: startDate,
         EndDate: endDate,
-        IsRecurring: isRecurring,
         Occurrences: occurrences,
         Description: description,
         SelectedDays: days,
@@ -60,28 +58,31 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
 
   //TODO: Remove later (Dummy data)
   useEffect(() => {
-     
-    const bc1: BudgetCategory = {
-      Id: 1,
-      Amount: 1000,
-      StartDate: new Date(),
-      Description: "A budget category description.",
-      CategoryType: CategoryType.Entertainment,
-      Transactions: []
-    }
 
-    const bc2: BudgetCategory = {
-      Id: 2,
-      Amount: 2000,
-      StartDate: new Date(),
-      Description: "Another budget category description.",
-      CategoryType: CategoryType.Groceries,
-      Transactions: []
-    }
+    // const bc1: BudgetCategory = {
+    //   Id: 1,
+    //   Amount: 1000,
+    //   StartDate: new Date(),
+    //   Description: "A budget category description.",
+    //   CategoryType: CategoryType.Entertainment,
+    //   Transactions: []
+    // }
 
-    setBudgetCategory([bc1, bc2]);
+    // const bc2: BudgetCategory = {
+    //   Id: 2,
+    //   Amount: 2000,
+    //   StartDate: new Date(),
+    //   Description: "Another budget category description.",
+    //   CategoryType: CategoryType.Groceries,
+    //   Transactions: []
+    // }
 
-  }, []);
+    // setBudgetCategory([bc1, bc2]);
+    
+    //TODO: on submit we check for this.
+    isRecurring && days.length === 0 ? setError("Please choose days") : setError("");
+
+  }, [isRecurring, days]);
 
   return (
     <>
@@ -98,11 +99,11 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
       />
 
       <CheckBoxInput
-        onChange={setHasEndDate}
+        onChange={setIsRecurring}
         label={"Repeating Transaction?"}
       />
 
-      {hasEndDate && (
+      {isRecurring && (
         <div>
           <OccurrenceSelector
             value={occurrences}
@@ -116,9 +117,10 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
             value={endDate}
             onChange={setEndDate}
             onError={setError}
-            setIsRecurring={setIsRecurring}
           />
+        
           <DaySelector label="Select Days" days={days} setDays={setDays} />
+          
         </div>
       )}
 

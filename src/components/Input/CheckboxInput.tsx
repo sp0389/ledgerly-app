@@ -17,7 +17,7 @@ const CheckBoxInput: React.FC<CheckboxInputProps> = ({ onChange, label }) => {
         {label}
       </label>
     </div>
-  );
+  );  
 };
 
 export default CheckBoxInput;

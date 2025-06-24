@@ -4,7 +4,6 @@ export interface Transaction {
   Id?: number;
   Amount: number;
   Date: Date;
-  IsRecurring: boolean;
   EndDate?: Date;
   Occurrences: number;
   Description: string;

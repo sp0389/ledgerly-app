@@ -4,7 +4,7 @@ interface ErrorPromptProps {
 
 const ErrorPrompt: React.FC<ErrorPromptProps> = ({ value }) => {
   return (
-    <div className="alert alert-soft alert-error mb-3" role="alert">
+    <div className="alert alert-soft alert-error mb-2" role="alert">
       {value}
     </div>
   )

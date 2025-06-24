@@ -47,17 +47,19 @@ const BudgetCategorySelector: React.FC<BudgetCategorySelectorProps> = ({
       <label className="label-text inline">
         Budget Category:
         <span>&nbsp;&nbsp;</span>
-        {budgetCategory === undefined ? (
-          <ErrorPrompt value={"Please create a budget category first."} />
-        ) : (
-          <select onChange={(e) => handleBudgetCategory(e.target.value)}>
-            {budgetCategory.map((bc) => (
-              <option key={bc.Id} value={bc.CategoryType}>
-                {bc.CategoryType}
-              </option>
-            ))}
-          </select>
-        )}
+          {budgetCategory === undefined ? (
+            <div className="mt-3">
+              <ErrorPrompt value={"Please create a budget category first."} />
+            </div>
+          ) : (
+            <select onChange={(e) => handleBudgetCategory(e.target.value)}>
+              {budgetCategory.map((bc) => (
+                <option key={bc.Id} value={bc.CategoryType}>
+                  {bc.CategoryType}
+                </option>
+              ))}
+            </select>
+          )}
       </label>
     </div>
   );

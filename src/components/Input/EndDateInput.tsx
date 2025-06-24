@@ -6,13 +6,11 @@ interface EndDateInputProps {
   startDate: Date;
   onError: (val: string) => void;
   onChange: (val: Date) => void;
-  setIsRecurring: (val: boolean) => void;
 }
 
 const EndDateInput: React.FC<EndDateInputProps> = ({
   onError,
   onChange,
-  setIsRecurring,
   value,
   label,
   startDate,
@@ -29,7 +27,6 @@ const EndDateInput: React.FC<EndDateInputProps> = ({
       return;
     }
     onError("");
-    setIsRecurring(true);
     onChange(input);
   };
 
