@@ -13,6 +13,7 @@ import DaySelector from "../Input/DaySelector";
 import BudgetCategorySelector from "../Input/BudgetCategorySelector";
 import TransactionTypeSelector from "../Input/TransactionTypeSelector";
 import { createTransaction } from "../../services/financeService";
+import BlockButton from "../BlockButton";
 
 interface TransactionInputProps {}
 
@@ -135,9 +136,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
 
       <TransactionTypeSelector onChange={setTransactionType} />
 
-      <button className="btn btn-primary btn-block mt-2" onClick={handleSubmit}>
-        Submit
-      </button>
+      <BlockButton label="Submit" onClick={handleSubmit} />
     </>
   );
 };

@@ -8,6 +8,7 @@ import EndDateInput from "../Input/EndDateInput";
 import BudgetCategorySelector from "../Input/BudgetCategorySelector";
 import CheckBoxInput from "../Input/CheckboxInput";
 import ErrorPrompt from "../Input/ErrorPrompt";
+import BlockButton from "../BlockButton";
 
 const BudgetCategoryInput = () => {
   const [amount, setAmount] = useState<number>(0);
@@ -18,6 +19,10 @@ const BudgetCategoryInput = () => {
   const [categoryType, setCategoryType] = useState<CategoryType>();
   const [budgetCategory, setBudgetCategory] = useState<BudgetCategory[]>([]);
   const [error, setError] = useState<string>("");
+
+  const handleSubmit = async () => {
+    //TODO: handle submit case here.
+  }
 
   useEffect(() => {
     //TODO: API call to fetch a budget category. I'll simulate one for now
@@ -63,6 +68,8 @@ const BudgetCategoryInput = () => {
         budgetCategory={budgetCategory}
         onChange={setCategoryType}
       />
+
+      <BlockButton label={"Submit"} onClick={handleSubmit}/>
     </>
   );
 };
