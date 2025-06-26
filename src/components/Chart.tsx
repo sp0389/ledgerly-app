@@ -11,6 +11,7 @@ const Chart: React.FC<ChartProps> = () => {
     series: [
       {
         name: "Series 1",
+        //TODO: update with actual API call for data.
         data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
       },
     ],

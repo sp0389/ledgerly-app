@@ -23,27 +23,27 @@ const Sidebar: React.FC<SidebarProps> = () => {
           <div className="drawer-body px-2 pt-4">
             <ul className="menu p-0">
               <li>
-                <a href="#">
+                <a href="/">
                   <span className="icon-[tabler--home] size-5"></span>
                   Overview
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/transactions">
                   <span className="icon-[tabler--calendar-dollar] size-5"></span>
-                  Budget
+                  View Transactions
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/newtransaction">
                   <span className="icon-[tabler--clock-12] size-5"></span>
-                  Scheduler
+                  Create Transaction
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/newbudget">
                   <span className="icon-[tabler--mail] size-5"></span>
-                  Reports
+                  Create Budget
                 </a>
               </li>
               <li>

@@ -1,27 +1,22 @@
-import { type Transaction } from "../types/transaction";
+import { type Transaction } from "../../types/transaction";
+import { useState, useEffect } from "react";
+import { getTransactions } from "../../services/financeService";
 
-interface TransactionViewProps {
-  transaction: Transaction[]
-}
+const TransactionView: React.FC = () => {
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-const TransactionView: React.FC<TransactionViewProps> = ({ transaction }) => {
-  //TODO: Move to parent
+  const getTransactionData = async () => {
+    try {
+      const data = await getTransactions();
+      setTransactions(data);
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
 
-  // const [transactions, setTransactions] = useState<Transaction[]>([]);
-  // const [error, setError] = useState<string>("");
-
-  // const getTransactionData = async () => {
-  //   try {
-  //     const data = await getTransactions();
-  //     setTransactions(data);
-  //   } catch (error: any) {
-  //     setError(error.message);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getTransactionData();
-  // }, []);
+  useEffect(() => {
+    getTransactionData();
+  }, []);
 
   return (
     <>
@@ -38,7 +33,7 @@ const TransactionView: React.FC<TransactionViewProps> = ({ transaction }) => {
             </tr>
           </thead>
           <tbody>
-            {transaction.map((t) => (
+            {transactions.map((t) => (
               <tr key={t.Id}>
                 <td>{t.Id}</td>
                 <td>{t.Amount}</td>
