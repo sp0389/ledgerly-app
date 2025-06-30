@@ -9,6 +9,7 @@ import BudgetCategorySelector from "../Input/BudgetCategorySelector";
 import CheckBoxInput from "../Input/CheckboxInput";
 import ErrorPrompt from "../Input/ErrorPrompt";
 import BlockButton from "../BlockButton";
+import Header from "../Header";
 
 const BudgetCategoryInput = () => {
   const [amount, setAmount] = useState<number>(0);
@@ -41,6 +42,8 @@ const BudgetCategoryInput = () => {
   return (
     <>
       {error != "" && <ErrorPrompt value={error} />}
+
+      <Header label="Budget" description="Bundle your spending into categories." />
 
       <AmountInput value={amount} onChange={setAmount} onError={setError} />
 

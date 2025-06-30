@@ -11,8 +11,7 @@ const DescriptionInput: React.FC<DescriptionProps> = ({ value, onChange }) => {
           Description
         </label>
         <textarea
-          className="textarea textarea-bordered mt-2"
-          placeholder="Enter a description"
+          className="textarea textarea-bordered"
           value={value}
           onChange={(e) => {
             onChange(e.target.value);

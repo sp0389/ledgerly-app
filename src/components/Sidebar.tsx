@@ -21,38 +21,71 @@ const Sidebar: React.FC<SidebarProps> = () => {
           tabIndex={-1}
         >
           <div className="drawer-body px-2 pt-4">
-            <ul className="menu p-0">
-              <li>
-                <a href="/">
-                  <span className="icon-[tabler--home] size-5"></span>
+            <div className="space-y-3">
+              <li className="list-none">
+                <h5 className="text-base-content/90 pb-3 font-semibold">
                   Overview
-                </a>
+                </h5>
+                <ul className="border-base-content/10 ms-0.5 border-s">
+                  <li>
+                    <a
+                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center justify-normal border-s-2 border-transparent px-3 py-1.5 text-sm"
+                      href="/"
+                    >
+                      <span className="icon-[tabler--home] size-4 mr-2"></span>
+                      Home
+                    </a>
+                  </li>
+                </ul>
               </li>
-              <li>
-                <a href="/transactions">
-                  <span className="icon-[tabler--calendar-dollar] size-5"></span>
-                  View Transactions
-                </a>
+            </div>
+
+            <div className="space-y-3">
+              <li className="list-none">
+                <h5 className="text-base-content/90 pb-3 font-semibold">
+                  Transactions
+                </h5>
+                <ul className="border-base-content/10 ms-0.5 border-s">
+                  <li>
+                    <a
+                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center justify-normal border-s-2 border-transparent px-3 py-1.5 text-sm"
+                      href="/transactions"
+                    >
+                      <span className="icon-[tabler--history] size-4 mr-2"></span>
+                      Transaction History
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center justify-between border-s-2 border-transparent px-3 py-1.5 text-sm"
+                      href="/newtransaction"
+                    >
+                      <span className="icon-[tabler--report-money] size-4 mr-2"></span>
+                      Create Transaction Record
+                    </a>
+                  </li>
+                </ul>
               </li>
-              <li>
-                <a href="/newtransaction">
-                  <span className="icon-[tabler--clock-12] size-5"></span>
-                  Create Transaction
-                </a>
+            </div>
+            <div className="space-y-3">
+              <li className="list-none">
+                <h5 className="text-base-content/90 pb-3 font-semibold">
+                  Budget
+                </h5>
+                <ul className="border-base-content/10 ms-0.5 border-s">
+                  <li>
+                    <a
+                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center justify-between border-s-2 border-transparent px-3 py-1.5 text-sm"
+                      href="/newbudget"
+                    >
+                      <span className="icon-[tabler--category] size-4 mr-2"></span>
+                      Create Budget Category
+                    </a>
+                  </li>
+                </ul>
               </li>
-              <li>
-                <a href="/newbudget">
-                  <span className="icon-[tabler--mail] size-5"></span>
-                  Create Budget
-                </a>
-              </li>
-              <li>
-                <a href="/test">
-                  <span className="icon-[tabler--mail] size-5"></span>
-                  Test
-                </a>
-              </li>
-            </ul>
+            </div>
+            
           </div>
         </aside>
       </div>

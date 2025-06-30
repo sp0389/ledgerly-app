@@ -34,9 +34,6 @@ const AmountInput: React.FC<AmountInputProps> = ({
         />
         <span className="label-text my-auto">USD</span>
       </div>
-      <label className="helper-text" htmlFor="trailingAndLeadingInput">
-        Enter an amount
-      </label>
     </div>
   );
 };

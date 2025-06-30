@@ -14,6 +14,7 @@ import BudgetCategorySelector from "../Input/BudgetCategorySelector";
 import TransactionTypeSelector from "../Input/TransactionTypeSelector";
 import { createTransaction } from "../../services/financeService";
 import BlockButton from "../BlockButton";
+import Header from "../Header";
 
 interface TransactionInputProps {}
 
@@ -89,9 +90,11 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
     <>
       {error != "" && <ErrorPrompt value={error} />}
 
-      <DescriptionInput value={description} onChange={setDescription} />
+      <Header label="Transaction Record" description="Create a new transaction record."/>
 
       <AmountInput value={amount} onChange={setAmount} onError={setError} />
+
+      <DescriptionInput value={description} onChange={setDescription} />
 
       <StartDateInput
         label={"Transaction Date"}

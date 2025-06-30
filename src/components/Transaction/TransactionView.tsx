@@ -1,6 +1,7 @@
 import { type Transaction } from "../../types/transaction";
 import { useState, useEffect } from "react";
 import { getTransactions } from "../../services/financeService";
+import Header from "../Header";
 
 const TransactionView: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -21,7 +22,11 @@ const TransactionView: React.FC = () => {
   return (
     <>
       <div className="w-full overflow-x-auto">
-        <table className="table-striped table">
+        <Header
+          label="Transactions"
+          description="Keep track of every transaction you have recorded."
+        />
+        <table className="table-striped table border-base-content/25 w-full overflow-x-auto border">
           <thead>
             <tr>
               <th>Id</th>
