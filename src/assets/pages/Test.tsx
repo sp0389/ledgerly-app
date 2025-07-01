@@ -2,6 +2,7 @@
 import BudgetCategoryInput from "../../components/BudgetCategory/BudgetCategoryInput";
 import Layout from "../../components/Layout";
 import TransactionInput from '../../components/Transaction/TransactionInput';
+import Calendar from "./Calendar";
 // import TransactionView from "../../components/TransactionView";
 // import { type Transaction, TransactionType } from "../../types/transaction";
 // import { CategoryType } from "../../types/budgetCategory";
@@ -57,7 +58,7 @@ const Test = () => {
     <Layout>
       {/* <TransactionInput /> */}
       {/* <TransactionView transaction={transaction} /> */}
-      <BudgetCategoryInput />
+      <Calendar />
     </Layout>
   );
 };

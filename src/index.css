@@ -8,6 +8,7 @@
 @plugin "@iconify/tailwind4";
 @import "flyonui/src/vendor/apexcharts.css";
 @import "flyonui/src/vendor/flatpickr.css";
+@import "flyonui/src/vendor/fullcalendar.css";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

@@ -85,7 +85,24 @@ const Sidebar: React.FC<SidebarProps> = () => {
                 </ul>
               </li>
             </div>
-            
+            <div className="space-y-3">
+              <li className="list-none">
+                <h5 className="text-base-content/90 pb-3 font-semibold">
+                  Test
+                </h5>
+                <ul className="border-base-content/10 ms-0.5 border-s">
+                  <li>
+                    <a
+                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center justify-normal border-s-2 border-transparent px-3 py-1.5 text-sm"
+                      href="/test"
+                    >
+                      <span className="icon-[tabler--category] size-4 mr-2"></span>
+                      Test Page
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </div>
           </div>
         </aside>
       </div>
