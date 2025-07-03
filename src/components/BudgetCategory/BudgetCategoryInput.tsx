@@ -51,7 +51,7 @@ const BudgetCategoryInput = () => {
 
       <StartDateInput
         value={startDate}
-        label={"Start Date"}
+        label="Start Date"
         onChange={setStartDate}
       />
 
@@ -60,7 +60,7 @@ const BudgetCategoryInput = () => {
       {hasEndDate && (
         <EndDateInput
           value={endDate}
-          label={"End Date"}
+          label="End Date"
           startDate={startDate}
           onChange={setEndDate}
           onError={setError}
@@ -72,7 +72,7 @@ const BudgetCategoryInput = () => {
         onChange={setCategoryType}
       />
 
-      <BlockButton label={"Submit"} onClick={handleSubmit}/>
+      <BlockButton label="Submit" onClick={handleSubmit}/>
     </>
   );
 };

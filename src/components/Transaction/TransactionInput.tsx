@@ -4,6 +4,7 @@ import { type BudgetCategory, CategoryType } from "../../types/budgetCategory";
 import React from "react";
 import ErrorPrompt from "../Input/ErrorPrompt";
 import DescriptionInput from "../Input/DescriptionInput";
+import Title from "../Input/TitleInput"
 import AmountInput from "../Input/AmountInput";
 import StartDateInput from "../Input/StartDateInput";
 import OccurrenceSelector from "../Input/OccurrenceSelector";
@@ -19,6 +20,7 @@ import Header from "../Header";
 interface TransactionInputProps {}
 
 const TransactionInput: React.FC<TransactionInputProps> = () => {
+  const [title, setTitle] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -41,6 +43,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
   const handleSubmit = async () => {
     try {
       const transaction: Transaction = {
+        Title: title,
         Amount: amount,
         Date: startDate,
         EndDate: endDate,
@@ -92,19 +95,21 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
 
       <Header label="Transaction Record" description="Create a new transaction record."/>
 
+      <Title label="Title" value={title} onChange={setTitle} />
+
       <AmountInput value={amount} onChange={setAmount} onError={setError} />
 
       <DescriptionInput value={description} onChange={setDescription} />
 
       <StartDateInput
-        label={"Transaction Date"}
+        label="Transaction Date"
         value={startDate}
         onChange={setStartDate}
       />
 
       <CheckBoxInput
         onChange={setIsRecurring}
-        label={"Repeating Transaction?"}
+        label="Repeating Transaction?"
       />
 
       {isRecurring && (
@@ -112,11 +117,11 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
           <OccurrenceSelector
             value={occurrences}
             setOccurrence={setOccurrences}
-            label={"Occurrences (Optional)"}
+            label="Occurrences (Optional)"
           />
 
           <EndDateInput
-            label={"End Transaction Date"}
+            label="End Transaction Date"
             startDate={startDate}
             value={endDate}
             onChange={setEndDate}
@@ -130,7 +135,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
 
       <CheckBoxInput
         onChange={setHasBudgetCategory}
-        label={"Add to Budget Category?"}
+        label="Add to Budget Category?"
       />
 
       {hasBudgetCategory && (

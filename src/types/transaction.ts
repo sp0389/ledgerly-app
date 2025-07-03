@@ -2,6 +2,7 @@ import { CategoryType, type BudgetCategory } from "./budgetCategory";
 
 export interface Transaction {
   Id?: number;
+  Title: string;
   Amount: number;
   Date: Date;
   EndDate?: Date;
