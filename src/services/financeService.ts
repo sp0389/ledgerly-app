@@ -14,6 +14,17 @@ export async function getTransactions(): Promise<Transaction[]> {
   return await response.json();
 }
 
+export async function getLastFiveTransactions(): Promise<Transaction[]>{
+  const url = new URL(`api/Finance/Transaction/LastFive`, baseUrl);
+  const response = await fetch(url);
+
+  if(!response.ok){
+    throw new Error(`Failed to fetch the last five transactions. ${response.status}`);
+  }
+
+  return await response.json();
+}
+
 export async function getTransactionById(id: number): Promise<Transaction> {
   const url = new URL(`api/Finance/Transaction/${id}`, baseUrl);
 
@@ -80,7 +91,7 @@ export async function updateTransaction(transaction: Transaction):Promise<boolea
 }
 
 export async function deleteTransaction(transactionId: number):Promise<boolean>{
-  const url = new URL(`api/Finance/Transaction/DeleteTransaction/${transactionId}`);
+  const url = new URL(`api/Finance/Transaction/DeleteTransaction/${transactionId}`, baseUrl);
   const response = await fetch(url, {
     method: 'DELETE',
     body: JSON.stringify(transactionId)
@@ -91,4 +102,26 @@ export async function deleteTransaction(transactionId: number):Promise<boolean>{
   }
 
   return true;
+}
+
+export async function getIncomeTransactionBalance():Promise<number>{
+  const url = new URL (`api/Finance/Transaction/IncomeBalance`, baseUrl);
+  const response = await fetch(url);
+
+  if(!response.ok){
+    throw new Error(`There was an error retrieving the income account balance. ${response.status}`);
+  }
+
+  return response.json();
+}
+
+export async function getExpenseTransactionBalance():Promise<number>{
+  const url = new URL (`api/Finance/Transaction/ExpenseBalance`, baseUrl);
+  const response = await fetch (url);
+
+  if(!response.ok){
+    throw new Error(`There was an error retrieving the expense account balance. ${response.status}`);
+  }
+
+  return response.json();
 }
