@@ -2,15 +2,18 @@ import { DayOfWeek } from "../../types/transaction";
 
 interface DaySelectorProps {
   label: string;
-  days: string[];
-  setDays: (val: string[]) => void;
+  days: DayOfWeek[];
+  setDays: (val: DayOfWeek[]) => void;
 }
 
 const DaySelector: React.FC<DaySelectorProps> = ({ label, days, setDays }) => {
   const handleDayOfWeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    const value = DayOfWeek[e.target.value as keyof typeof DayOfWeek];
+
     e.target.checked == true
-      ? setDays([...days, e.target.value])
-      : setDays(days.filter((day) => day !== e.target.value));
+      ? setDays([...days, value])
+      : setDays(days.filter((day) => day !== value));
   };
 
   return (

@@ -18,5 +18,5 @@ export enum CategoryType {
   Transportation = "Transportation",
   Housing = "Housing",
   Health = "Health",
-  Savings = "Savings"
+  Savings = "Savings",
 }

@@ -1,7 +1,7 @@
 import type { Transaction } from "../types/transaction";
 import type { BudgetCategory, CategoryType } from "../types/budgetCategory";
 
-const baseUrl = 'https:localhost:7156/'
+const baseUrl = 'https:localhost:7156/';
 
 export async function getTransactions(): Promise<Transaction[]> {
   const url = new URL('api/Finance/Transaction', baseUrl);
@@ -71,6 +71,34 @@ export async function createTransaction(transaction: Transaction):Promise<boolea
 
   if(!response.ok){
     throw new Error(`There was an error creating the transaction. ${response.status}`);
+  }
+
+  return true;
+}
+
+export async function createBiWeeklyTransaction(transaction: Transaction):Promise<boolean>{
+  const url = new URL(`api/Finance/Transaction/CreateBiWeeklyTransaction/${transaction}`, baseUrl);
+  const response = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(transaction)
+  });
+
+  if(!response.ok){
+    throw new Error(`There was an error creating the bi-weekly transaction. ${response.status}`);
+  }
+
+  return true;
+}
+
+export async function createMonthlyTransaction(transaction: Transaction):Promise<boolean>{
+  const url = new URL(`api/Finance/Transaction/CreateMonthlyTransaction/${transaction}`, baseUrl);
+  const response = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(transaction)
+  });
+
+  if(!response.ok){
+    throw new Error(`There was an error creating the monthly transaction. ${response.status}`);
   }
 
   return true;

@@ -6,9 +6,9 @@ export interface Transaction {
   Amount: number;
   Date: Date;
   EndDate?: Date;
-  Occurrences: number;
+  Occurrences?: number;
   Description: string;
-  SelectedDays: string[];
+  SelectedDays?: DayOfWeek[];
   TransactionType: TransactionType;
   CategoryType?: CategoryType;
   BudgetCategory?: BudgetCategory;

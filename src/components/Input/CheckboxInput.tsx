@@ -5,7 +5,7 @@ interface CheckboxInputProps {
 
 const CheckBoxInput: React.FC<CheckboxInputProps> = ({ onChange, label }) => {
   return (
-    <div className="flex items-center gap-1 mt-2">
+    <div className="flex items-center gap-1 mt-2 mb-3">
       <input
         type="checkbox"
         className="checkbox"
