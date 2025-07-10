@@ -6,16 +6,19 @@ import { CategoryType } from "../../types/budgetCategory";
 import StartDateInput from "../Input/StartDateInput";
 import EndDateInput from "../Input/EndDateInput";
 import BudgetCategorySelector from "../Input/BudgetCategorySelector";
-import CheckBoxInput from "../Input/CheckboxInput";
 import ErrorPrompt from "../Input/ErrorPrompt";
 import BlockButton from "../BlockButton";
 import Header from "../Header";
+import { handleNewBudgetCategory } from "../../services/budgetCategoryService";
+import {
+  createBudgetCategory,
+  getBudgetCategories,
+} from "../../services/financeService";
 
 const BudgetCategoryInput = () => {
   const [amount, setAmount] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
   const [startDate, setStartDate] = useState<Date>(new Date());
-  const [hasEndDate, setHasEndDate] = useState<boolean>(false);
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [categoryType, setCategoryType] = useState<CategoryType>();
   const [budgetCategory, setBudgetCategory] = useState<BudgetCategory[]>([]);
@@ -23,27 +26,43 @@ const BudgetCategoryInput = () => {
 
   const handleSubmit = async () => {
     //TODO: handle submit case here.
-  }
+    try {
+      const bc = handleNewBudgetCategory(
+        amount,
+        startDate,
+        endDate,
+        description,
+        categoryType!
+      );
+      await createBudgetCategory(bc);
+    } catch (error: any) {
+      console.log(error.message);
+      setError(error.message);
+    }
+  };
+
+  const fetchBudgetCategoriesFromApi = async () => {
+    try {
+      const bc = await getBudgetCategories();
+      setBudgetCategory(bc);
+    } catch (error: any) {
+      console.log(error.message);
+      setError(error.message);
+    }
+  };
 
   useEffect(() => {
-    //TODO: API call to fetch a budget category. I'll simulate one for now
-    const bc: BudgetCategory = {
-      Id: 1,
-      Amount: 1000,
-      StartDate: new Date(),
-      Description: "A budget category description.",
-      CategoryType: CategoryType.Housing,
-      Transactions: [],
-    };
-
-    setBudgetCategory([bc]);
+    fetchBudgetCategoriesFromApi();
   }, []);
 
   return (
     <>
       {error != "" && <ErrorPrompt value={error} />}
 
-      <Header label="Budget" description="Bundle your spending into categories." />
+      <Header
+        label="Budget"
+        description="Bundle your spending into categories."
+      />
 
       <AmountInput value={amount} onChange={setAmount} onError={setError} />
 
@@ -55,24 +74,20 @@ const BudgetCategoryInput = () => {
         onChange={setStartDate}
       />
 
-      <CheckBoxInput label={"Has End Date?"} onChange={setHasEndDate} />
-
-      {hasEndDate && (
-        <EndDateInput
-          value={endDate}
-          label="End Date"
-          startDate={startDate}
-          onChange={setEndDate}
-          onError={setError}
-        />
-      )}
+      <EndDateInput
+        value={endDate}
+        label="End Date"
+        startDate={startDate}
+        onChange={setEndDate}
+        onError={setError}
+      />
 
       <BudgetCategorySelector
         budgetCategory={budgetCategory}
         onChange={setCategoryType}
       />
 
-      <BlockButton label="Submit" onClick={handleSubmit}/>
+      <BlockButton label="Submit" onClick={handleSubmit} />
     </>
   );
 };

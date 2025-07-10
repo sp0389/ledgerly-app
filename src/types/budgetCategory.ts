@@ -1,13 +1,13 @@
 import type { Transaction } from './transaction'
 
 export interface BudgetCategory {
-  Id: number;
+  Id?: number;
   Amount: number;
   StartDate: Date;
-  EndDate?: Date;
+  EndDate: Date;
   Description: string;
   CategoryType?: CategoryType;
-  Transactions: Transaction[];
+  Transactions?: Transaction[];
 }
 
 export enum CategoryType {

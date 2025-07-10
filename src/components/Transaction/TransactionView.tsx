@@ -6,7 +6,7 @@ import Header from "../Header";
 const TransactionView: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-  const getTransactionData = async () => {
+  const fetchTransactionsFromApi = async () => {
     try {
       const data = await getTransactions();
       setTransactions(data);
@@ -16,7 +16,7 @@ const TransactionView: React.FC = () => {
   };
 
   useEffect(() => {
-    getTransactionData();
+    fetchTransactionsFromApi();
   }, []);
 
   return (

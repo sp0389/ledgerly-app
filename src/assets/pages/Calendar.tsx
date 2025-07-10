@@ -12,13 +12,8 @@ type CalendarOptions = {
 
 const Calendar: React.FC = () => {
   const [events, setEvents] = useState<CalendarOptions[]>([]);
-
-  // const eventData = [
-  //   { title: "Rent Payment", date: new Date() },
-  //   { title: "Pay from XYZ Inc.", date: new Date("2025-08-01") },
-  // ];
-
-  const handleDataFromApi = async () => {
+  
+  const fetchTransactionsFromApi = async () => {
     try{
       const transactions = await getTransactions();
 
@@ -36,14 +31,14 @@ const Calendar: React.FC = () => {
   }
 
   useEffect(() => {
-    handleDataFromApi();
+    fetchTransactionsFromApi();
   }, []);
 
   return (
     <FullCalendar
       plugins={[dayGridPlugin]}
       initialView="dayGridMonth"
-      weekends={false}
+      weekends={true}
       events={events}
     />
   );

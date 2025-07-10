@@ -1,6 +1,8 @@
 import type { Transaction } from "../types/transaction";
 import type { BudgetCategory, CategoryType } from "../types/budgetCategory";
 
+//TODO: split these functions into seperate files.
+
 const baseUrl = 'https:localhost:7156/';
 
 export async function getTransactions(): Promise<Transaction[]> {
@@ -152,4 +154,19 @@ export async function getExpenseTransactionBalance():Promise<number>{
   }
 
   return response.json();
+}
+
+export async function createBudgetCategory(budgetCategory: BudgetCategory):Promise<boolean>{
+  const url = new  URL(`api/Finance/BudgetCategory/CreateBudgetCategory`, baseUrl);
+  
+  const response = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(budgetCategory)
+  });
+
+  if(!response.ok){
+    throw new Error(`There was an error creating the budget category. ${response.status}`)
+  }
+
+  return true;
 }
