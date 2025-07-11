@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
-import { type BudgetCategory } from "../../types/budgetCategory";
 import AmountInput from "../Input/AmountInput";
 import DescriptionInput from "../Input/DescriptionInput";
 import { CategoryType } from "../../types/budgetCategory";
 import StartDateInput from "../Input/StartDateInput";
 import EndDateInput from "../Input/EndDateInput";
-import BudgetCategorySelector from "../Input/BudgetCategorySelector";
+import BudgetCategorySelector from "../Input/BudgetCategoryTypeSelector";
 import ErrorPrompt from "../Input/ErrorPrompt";
 import BlockButton from "../BlockButton";
 import Header from "../Header";
 import { handleNewBudgetCategory } from "../../services/budgetCategoryService";
 import {
   createBudgetCategory,
-  getBudgetCategories,
+  getBudgetCategoryTypes,
 } from "../../services/financeService";
 
 const BudgetCategoryInput = () => {
@@ -21,7 +20,7 @@ const BudgetCategoryInput = () => {
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [categoryType, setCategoryType] = useState<CategoryType>();
-  const [budgetCategory, setBudgetCategory] = useState<BudgetCategory[]>([]);
+  const [budgetCategoryType, setBudgetCategoryType] = useState<string[]>([]);
   const [error, setError] = useState<string>("");
 
   const handleSubmit = async () => {
@@ -29,8 +28,8 @@ const BudgetCategoryInput = () => {
     try {
       const bc = handleNewBudgetCategory(
         amount,
-        startDate,
-        endDate,
+        startDate.toISOString(),
+        endDate.toISOString(),
         description,
         categoryType!
       );
@@ -41,18 +40,18 @@ const BudgetCategoryInput = () => {
     }
   };
 
-  const fetchBudgetCategoriesFromApi = async () => {
-    try {
-      const bc = await getBudgetCategories();
-      setBudgetCategory(bc);
-    } catch (error: any) {
+  const fetchBudgetCategoryTypesFromApi = async () => {
+    try{
+      const bct = await getBudgetCategoryTypes();
+      setBudgetCategoryType(bct);
+    } catch (error: any){
       console.log(error.message);
       setError(error.message);
     }
-  };
+  }
 
   useEffect(() => {
-    fetchBudgetCategoriesFromApi();
+    fetchBudgetCategoryTypesFromApi();
   }, []);
 
   return (
@@ -83,7 +82,7 @@ const BudgetCategoryInput = () => {
       />
 
       <BudgetCategorySelector
-        budgetCategory={budgetCategory}
+        budgetCategoryTypes={budgetCategoryType}
         onChange={setCategoryType}
       />
 

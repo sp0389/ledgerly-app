@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {
   DayOfWeek,
   TransactionType,
-  type Transaction,
 } from "../../types/transaction";
 import { type BudgetCategory, CategoryType } from "../../types/budgetCategory";
 import React from "react";
@@ -21,6 +20,7 @@ import {
   createBiWeeklyTransaction,
   createMonthlyTransaction,
   createTransaction,
+  getBudgetCategories,
 } from "../../services/financeService";
 import BlockButton from "../BlockButton";
 import Header from "../Header";
@@ -50,7 +50,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
   const [selectedBudgetCategory, setSelectedBudgetCategory] = useState<
     CategoryType | undefined
   >(undefined);
-
+ 
   //TEST -- set as undefined first so the error message displays to the user
   const [budgetCategory, setBudgetCategory] = useState<
     BudgetCategory[] | undefined
@@ -63,7 +63,6 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
           title,
           amount,
           startDate,
-          endDate,
           description,
           transactionType,
           selectedBudgetCategory
@@ -101,13 +100,26 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
 
   useEffect(() => {
 
+    const fetchBudgetCategoryTypesFromApi = async () => {
+      try{
+        const bc = await getBudgetCategories();
+        setBudgetCategory(bc);  
+      } catch (error: any) {
+        console.log(error.message); // TODO: Update
+      }
+    }
+    
+    fetchBudgetCategoryTypesFromApi();
+
     //TODO: on submit we check for this.
     isRecurring && days.length === 0
       ? setError("Please choose days")
       : setError("");
+    
+    console.log(selectedBudgetCategory);
 
     console.log("Selected Days: ", days);
-  }, [isRecurring, days]);
+  }, [isRecurring, days, selectedBudgetCategory]);
 
   return (
     <>

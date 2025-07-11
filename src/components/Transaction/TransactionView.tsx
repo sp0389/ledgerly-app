@@ -1,4 +1,4 @@
-import { type Transaction } from "../../types/transaction";
+import { TransactionType, type Transaction } from "../../types/transaction";
 import { useState, useEffect } from "react";
 import { getTransactions } from "../../services/financeService";
 import Header from "../Header";
@@ -30,41 +30,32 @@ const TransactionView: React.FC = () => {
           <thead>
             <tr>
               <th>Id</th>
+              <th>Title</th>
               <th>Amount</th>
               <th>Date</th>
               <th>Description</th>
               <th>Transaciton Type</th>
-              <th>Category Type</th>
             </tr>
           </thead>
           <tbody>
             {transactions.map((t) => (
-              <tr key={t.Id}>
-                <td>{t.Id}</td>
-                <td>{t.Amount}</td>
-                <td>{t.Date.toLocaleDateString()}</td>
-                <td>{t.Description}</td>
-                <td>{t.TransactionType}</td>
-                <td>{t.BudgetCategory?.CategoryType}</td>
+              <tr key={t.id}>
+                <td>{t.id}</td>
+                <td>{t.title}</td>
+                <td>{t.amount}</td>
+                <td>{t.date.toString()}</td>
+                <td>{t.description}</td>
+                <td>{t.transactionType === TransactionType.Income ? "Income" : "Expense"}</td>
                 <td>
-                  <button
-                    className="btn btn-circle btn-text btn-sm"
-                    aria-label="Action button"
-                  >
-                    <span className="icon-[tabler--pencil] size-5"></span>
-                  </button>
-                  <button
-                    className="btn btn-circle btn-text btn-sm"
-                    aria-label="Action button"
-                  >
-                    <span className="icon-[tabler--trash] size-5"></span>
-                  </button>
-                  <button
-                    className="btn btn-circle btn-text btn-sm"
-                    aria-label="Action button"
-                  >
-                    <span className="icon-[tabler--dots-vertical] size-5"></span>
-                  </button>
+                <button className="btn btn-text btn-sm" aria-label="Action button">
+                  <span className="icon-[tabler--pencil] size-4"></span>
+                </button>
+                <button className="btn btn-text btn-sm" aria-label="Action button">
+                  <span className="icon-[tabler--trash] size-4"></span>
+                </button>
+                <button className="btn btn-text btn-sm" aria-label="Action button">
+                  <span className="icon-[tabler--dots-vertical] size-4"></span>
+                </button>
                 </td>
               </tr>
             ))}

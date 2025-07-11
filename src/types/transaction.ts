@@ -1,22 +1,22 @@
 import { CategoryType, type BudgetCategory } from "./budgetCategory";
 
 export interface Transaction {
-  Id?: number;
-  Title: string;
-  Amount: number;
-  Date: Date;
-  EndDate?: Date;
-  Occurrences?: number;
-  Description: string;
-  SelectedDays?: DayOfWeek[];
-  TransactionType: TransactionType;
-  CategoryType?: CategoryType;
-  BudgetCategory?: BudgetCategory;
+  id?: number;
+  title: string;
+  amount: number;
+  date: Date;
+  endDate?: Date | null;
+  occurrences?: number;
+  description: string;
+  selectedDays?: DayOfWeek[];
+  transactionType: TransactionType;
+  categoryType?: CategoryType;
+  budgetCategory?: BudgetCategory;
 }
 
 export enum TransactionType {
-  Income = "Income",
-  Expense = "Expense"
+  Income,
+  Expense
 }
 
 export enum DayOfWeek {

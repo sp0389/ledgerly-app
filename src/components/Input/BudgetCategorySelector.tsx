@@ -1,19 +1,16 @@
-import { CategoryType } from "../../types/budgetCategory";
-import { type BudgetCategory } from "../../types/budgetCategory";
+import { CategoryType, type BudgetCategory } from "../../types/budgetCategory";
 import ErrorPrompt from "./ErrorPrompt";
 
-// REWORK -- fetch the budget categories from API.
-
 interface BudgetCategorySelectorProps {
-  onChange: (val: CategoryType) => void;
   budgetCategory: BudgetCategory[] | undefined;
+  onChange: (val: CategoryType) => void;
 }
 
-const BudgetCategorySelector: React.FC<BudgetCategorySelectorProps> = ({
-  onChange,
-  budgetCategory,
-}) => {
-  const handleBudgetCategory = (categoryType: string) => {
+//TODO: Rework this later
+
+const BudgetCategorySelector: React.FC<BudgetCategorySelectorProps> = ({ budgetCategory, onChange } ) => {
+
+    const handleBudgetCategory = (categoryType: string) => {
     switch (categoryType) {
       case "Entertainment":
         onChange(CategoryType.Entertainment);
@@ -27,7 +24,7 @@ const BudgetCategorySelector: React.FC<BudgetCategorySelectorProps> = ({
       case "EatingOut":
         onChange(CategoryType.EatingOut);
         break;
-      case "Transportation":
+      case "Transportation": 
         onChange(CategoryType.Transportation);
         break;
       case "Housing":
@@ -40,10 +37,9 @@ const BudgetCategorySelector: React.FC<BudgetCategorySelectorProps> = ({
         onChange(CategoryType.Savings);
         break;
     }
-  };
-
+  }
   return (
-    <div className="mt-2">
+      <div className="mt-2">
       <label className="label-text inline">
         Budget Category:
         <span>&nbsp;&nbsp;</span>
@@ -52,17 +48,17 @@ const BudgetCategorySelector: React.FC<BudgetCategorySelectorProps> = ({
               <ErrorPrompt value={"Please create a budget category first."} />
             </div>
           ) : (
-            <select onChange={(e) => handleBudgetCategory(e.target.value)}>
+            <select onChange={(e) => {handleBudgetCategory(e.target.value)}}>
               {budgetCategory.map((bc) => (
-                <option key={bc.Id} value={bc.CategoryType}>
-                  {bc.CategoryType}
+                <option key={bc.id} >
+                  {bc.categoryType}
                 </option>
               ))}
             </select>
           )}
       </label>
     </div>
-  );
-};
+  )
+}
 
 export default BudgetCategorySelector;

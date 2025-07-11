@@ -8,27 +8,28 @@ type CalendarOptions = {
   title: string;
   start: Date;
   end?: Date;
-}
+};
 
 const Calendar: React.FC = () => {
   const [events, setEvents] = useState<CalendarOptions[]>([]);
-  
+
   const fetchTransactionsFromApi = async () => {
-    try{
+    try {
       const transactions = await getTransactions();
 
-      const eventData:CalendarOptions[] = transactions.map((t: Transaction) => ({
-        title: t.Title,
-        start: t.Date,
-        end: t.EndDate
-      }));
+      const eventData: CalendarOptions[] = transactions.map(
+        (t: Transaction) => ({
+          title: t.title,
+          start: t.date,
+          end: t.endDate,
+        })
+      );
 
       setEvents(eventData);
-    }
-    catch(error: any) {
+    } catch (error: any) {
       console.log(error.message);
     }
-  }
+  };
 
   useEffect(() => {
     fetchTransactionsFromApi();
