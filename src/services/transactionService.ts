@@ -1,8 +1,7 @@
-import type { CategoryType } from "../types/budgetCategory";
 import type { DayOfWeek, Transaction, TransactionType } from "../types/transaction"
 
 export const handleSingleTransaction = (title: string, amount: number, startDate: Date,
-  description: string, transactionType: TransactionType, selectedBudgetCategory: CategoryType | undefined
+  description: string, transactionType: TransactionType, selectedBudgetCategoryId: number | undefined
 ):Transaction => {
   const transaction: Transaction = {
     title: title,
@@ -10,14 +9,14 @@ export const handleSingleTransaction = (title: string, amount: number, startDate
     date: startDate,
     description: description,
     transactionType: transactionType,
-    categoryType: selectedBudgetCategory,
+    budgetCategoryId: selectedBudgetCategoryId,
   }
 
   return transaction;
 }
 
 export const handleRepeatingTransaction = (title: string, amount: number, startDate: Date, endDate: Date | null, occurrences: number, 
-  description: string, days: DayOfWeek[],transactionType: TransactionType, selectedBudgetCategory: CategoryType | undefined
+  description: string, days: DayOfWeek[],transactionType: TransactionType, selectedBudgetCategoryId: number | undefined
 ): Transaction => {
   const transaction: Transaction = {
     title: title,
@@ -28,7 +27,7 @@ export const handleRepeatingTransaction = (title: string, amount: number, startD
     description: description,
     selectedDays: days,
     transactionType: transactionType,
-    categoryType: selectedBudgetCategory,
+    budgetCategoryId: selectedBudgetCategoryId,
   }
 
   return transaction;

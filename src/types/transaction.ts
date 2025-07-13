@@ -11,6 +11,7 @@ export interface Transaction {
   selectedDays?: DayOfWeek[];
   transactionType: TransactionType;
   categoryType?: CategoryType;
+  budgetCategoryId?: number;
   budgetCategory?: BudgetCategory;
 }
 

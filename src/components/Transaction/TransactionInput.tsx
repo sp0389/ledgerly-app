@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  DayOfWeek,
-  TransactionType,
-} from "../../types/transaction";
+import { DayOfWeek, TransactionType } from "../../types/transaction";
 import { type BudgetCategory, CategoryType } from "../../types/budgetCategory";
 import React from "react";
 import ErrorPrompt from "../Input/ErrorPrompt";
@@ -47,10 +44,10 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
   const [isMonthly, setIsMonthly] = useState<boolean>(false);
   const [days, setDays] = useState<DayOfWeek[]>([]);
   const [hasBudgetCategory, setHasBudgetCategory] = useState<boolean>(false);
-  const [selectedBudgetCategory, setSelectedBudgetCategory] = useState<
-    CategoryType | undefined
+  const [selectedBudgetCategoryId, setSelectedBudgetCategoryId] = useState<
+    number | undefined
   >(undefined);
- 
+
   //TEST -- set as undefined first so the error message displays to the user
   const [budgetCategory, setBudgetCategory] = useState<
     BudgetCategory[] | undefined
@@ -65,7 +62,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
           startDate,
           description,
           transactionType,
-          selectedBudgetCategory
+          selectedBudgetCategoryId
         );
 
         await createTransaction(transaction);
@@ -84,7 +81,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
           description,
           days,
           transactionType,
-          selectedBudgetCategory
+          selectedBudgetCategoryId
         );
         if (isBiWeekly) {
           await createBiWeeklyTransaction(repeatingTransaction);
@@ -99,27 +96,26 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
   };
 
   useEffect(() => {
-
     const fetchBudgetCategoryTypesFromApi = async () => {
-      try{
+      try {
         const bc = await getBudgetCategories();
-        setBudgetCategory(bc);  
+        setBudgetCategory(bc);
       } catch (error: any) {
         console.log(error.message); // TODO: Update
       }
-    }
-    
+    };
+
     fetchBudgetCategoryTypesFromApi();
 
     //TODO: on submit we check for this.
     isRecurring && days.length === 0
       ? setError("Please choose days")
       : setError("");
-    
-    console.log(selectedBudgetCategory);
+
+    console.log(selectedBudgetCategoryId);
 
     console.log("Selected Days: ", days);
-  }, [isRecurring, days, selectedBudgetCategory]);
+  }, [isRecurring, days, selectedBudgetCategoryId]);
 
   return (
     <>
@@ -146,7 +142,6 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
 
       {isRecurring && (
         <div>
-          
           <CheckBoxInput onChange={setIsBiWeekly} label="Biweekly" />
           <CheckBoxInput onChange={setIsMonthly} label="Monthly" />
 
@@ -180,7 +175,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
       {hasBudgetCategory && (
         <BudgetCategorySelector
           budgetCategory={budgetCategory}
-          onChange={setSelectedBudgetCategory}
+          onChange={setSelectedBudgetCategoryId}
         />
       )}
 

@@ -9,7 +9,7 @@ const BudgetCategoryTypeSelector: React.FC<BudgetCategoryTypeSelectorProps> = ({
   onChange,
   budgetCategoryTypes
 }) => {
-  const handleBudgetCategory = (categoryType: string) => {
+  const handleBudgetCategoryType = (categoryType: string) => {
     switch (categoryType) {
       case "Entertainment":
         onChange(CategoryType.Entertainment);
@@ -43,7 +43,7 @@ const BudgetCategoryTypeSelector: React.FC<BudgetCategoryTypeSelectorProps> = ({
       <label className="label-text inline">
         Budget Category:
         <span>&nbsp;&nbsp;</span>
-            <select onChange={(e) => handleBudgetCategory(e.target.value)}>
+            <select onChange={(e) => handleBudgetCategoryType(e.target.value)}>
               {budgetCategoryTypes.map((bc) => (
                 <option key={bc} >
                   {bc}

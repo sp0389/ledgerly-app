@@ -196,4 +196,4 @@ export async function getBudgetCategoryTypes(): Promise<string[]>{
   }
 
   return response.json();
-}
+} 
