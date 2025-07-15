@@ -120,7 +120,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
       ? setError("Please choose days")
       : setError("");
 
-  }, []);
+  }, [days, isRecurring, hasBudgetCategory]);
 
   return (
     <>
