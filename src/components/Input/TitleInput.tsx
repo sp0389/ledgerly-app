@@ -1,10 +1,11 @@
 interface TitleProps {
   label: string;
   value: string;
+  placeholderText: string;
   onChange: (input: string) => void;
 }
 
-const Title: React.FC<TitleProps> = ({ value, label, onChange }) => {
+const Title: React.FC<TitleProps> = ({ value, label, placeholderText, onChange }) => {
   return (
     <div>
       <label className="label-text" htmlFor="labelAndHelperText">
@@ -12,7 +13,7 @@ const Title: React.FC<TitleProps> = ({ value, label, onChange }) => {
       </label>
       <input
         type="text"
-        placeholder="e.g. Rent Payment"
+        placeholder={placeholderText}
         className="input"
         value={value}
         onChange={(e) => onChange(e.target.value)}

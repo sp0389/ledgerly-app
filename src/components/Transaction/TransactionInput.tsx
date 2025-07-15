@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { DayOfWeek, TransactionType } from "../../types/transaction";
-import { type BudgetCategory, CategoryType } from "../../types/budgetCategory";
+import { type BudgetCategory } from "../../types/budgetCategory";
 import React from "react";
 import ErrorPrompt from "../Input/ErrorPrompt";
 import DescriptionInput from "../Input/DescriptionInput";
@@ -34,7 +34,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
   const [description, setDescription] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [transactionType, setTransactionType] = useState<TransactionType>(
-    TransactionType.Income
+    TransactionType.Expense
   );
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [occurrences, setOccurrences] = useState<number>(0);
@@ -67,7 +67,6 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
 
         await createTransaction(transaction);
       } catch (error: any) {
-        console.log(error.message);
         setError(error.message);
       }
     } else {
@@ -89,7 +88,6 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
           await createMonthlyTransaction(repeatingTransaction);
         }
       } catch (error: any) {
-        console.log(error.message);
         setError(error.message);
       }
     }
@@ -101,21 +99,28 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
         const bc = await getBudgetCategories();
         setBudgetCategory(bc);
       } catch (error: any) {
-        console.log(error.message); // TODO: Update
+        setError(error.message);
       }
     };
 
-    fetchBudgetCategoryTypesFromApi();
+    if (hasBudgetCategory){
+      try{
+        fetchBudgetCategoryTypesFromApi();
+      } catch(error: any){
+        setError(error.message);
+      }
+    }
+
+    hasBudgetCategory && budgetCategory === undefined
+      ? setError("You must select a budget category from the dropdown.")
+      : setError("");
 
     //TODO: on submit we check for this.
     isRecurring && days.length === 0
       ? setError("Please choose days")
       : setError("");
 
-    console.log(selectedBudgetCategoryId);
-
-    console.log("Selected Days: ", days);
-  }, [isRecurring, days, selectedBudgetCategoryId]);
+  }, []);
 
   return (
     <>
@@ -126,7 +131,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
         description="Create a new transaction record."
       />
 
-      <Title label="Title" value={title} onChange={setTitle} />
+      <Title label="Title" value={title} placeholderText="e.g. Rent Payment" onChange={setTitle} />
 
       <AmountInput value={amount} onChange={setAmount} onError={setError} />
 
@@ -179,7 +184,9 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
         />
       )}
 
-      <TransactionTypeSelector onChange={setTransactionType} />
+      {!hasBudgetCategory && (
+        <TransactionTypeSelector onChange={setTransactionType} />
+      )}
 
       <BlockButton label="Submit" onClick={handleSubmit} />
     </>

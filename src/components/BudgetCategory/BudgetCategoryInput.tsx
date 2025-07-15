@@ -13,8 +13,10 @@ import {
   createBudgetCategory,
   getBudgetCategoryTypes,
 } from "../../services/financeService";
+import Title from "../Input/TitleInput";
 
 const BudgetCategoryInput = () => {
+  const [title, setTitle] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
   const [startDate, setStartDate] = useState<Date>(new Date());
@@ -27,6 +29,7 @@ const BudgetCategoryInput = () => {
     //TODO: handle submit case here.
     try {
       const bc = handleNewBudgetCategory(
+        title,
         amount,
         startDate.toISOString(),
         endDate.toISOString(),
@@ -62,6 +65,8 @@ const BudgetCategoryInput = () => {
         label="Budget"
         description="Bundle your spending into categories."
       />
+
+      <Title label="Title" value={title} placeholderText="e.g. Entertainment" onChange={setTitle}/>
 
       <AmountInput value={amount} onChange={setAmount} onError={setError} />
 

@@ -16,8 +16,8 @@ export interface Transaction {
 }
 
 export enum TransactionType {
-  Income,
-  Expense
+  Expense,
+  Income
 }
 
 export enum DayOfWeek {
