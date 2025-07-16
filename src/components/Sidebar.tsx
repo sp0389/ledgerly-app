@@ -29,7 +29,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
                 <ul className="border-base-content/10 ms-0.5 border-s">
                   <li>
                     <a
-                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center justify-normal border-s-2 border-transparent px-3 py-1.5 text-sm"
+                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center border-s-2 border-transparent px-3 py-1.5 text-sm"
                       href="/"
                     >
                       <span className="icon-[tabler--home] size-4 mr-2"></span>
@@ -48,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
                 <ul className="border-base-content/10 ms-0.5 border-s">
                   <li>
                     <a
-                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center justify-normal border-s-2 border-transparent px-3 py-1.5 text-sm"
+                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center border-s-2 border-transparent px-3 py-1.5 text-sm"
                       href="/transactions"
                     >
                       <span className="icon-[tabler--history] size-4 mr-2"></span>
@@ -57,7 +57,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
                   </li>
                   <li>
                     <a
-                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center justify-between border-s-2 border-transparent px-3 py-1.5 text-sm"
+                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center border-s-2 border-transparent px-3 py-1.5 text-sm"
                       href="/newtransaction"
                     >
                       <span className="icon-[tabler--report-money] size-4 mr-2"></span>
@@ -75,7 +75,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
                 <ul className="border-base-content/10 ms-0.5 border-s">
                   <li>
                     <a
-                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center justify-between border-s-2 border-transparent px-3 py-1.5 text-sm"
+                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center border-s-2 border-transparent px-3 py-1.5 text-sm"
                       href="/newbudget"
                     >
                       <span className="icon-[tabler--category] size-4 mr-2"></span>
@@ -93,7 +93,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
                 <ul className="border-base-content/10 ms-0.5 border-s">
                   <li>
                     <a
-                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center justify-normal border-s-2 border-transparent px-3 py-1.5 text-sm"
+                      className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center border-s-2 border-transparent px-3 py-1.5 text-sm"
                       href="/test"
                     >
                       <span className="icon-[tabler--category] size-4 mr-2"></span>

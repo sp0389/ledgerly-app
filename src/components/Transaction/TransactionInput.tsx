@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { DayOfWeek, TransactionType } from "../../types/transaction";
 import { type BudgetCategory } from "../../types/budgetCategory";
 import React from "react";
@@ -53,6 +54,8 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
     BudgetCategory[] | undefined
   >(undefined);
 
+  const navigate = useNavigate();
+
   const handleSubmit = async () => {
     if (!isBiWeekly && !isMonthly) {
       try {
@@ -66,6 +69,8 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
         );
 
         await createTransaction(transaction);
+        navigate("/transactions");
+
       } catch (error: any) {
         setError(error.message);
       }
@@ -84,8 +89,12 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
         );
         if (isBiWeekly) {
           await createBiWeeklyTransaction(repeatingTransaction);
+          navigate("/transactions");
+
         } else {
           await createMonthlyTransaction(repeatingTransaction);
+          navigate("/transactions");
+          
         }
       } catch (error: any) {
         setError(error.message);

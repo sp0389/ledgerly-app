@@ -1,7 +1,8 @@
 import { TransactionType, type Transaction } from "../../types/transaction";
 import { useState, useEffect } from "react";
-import { getTransactions } from "../../services/financeService";
+import { deleteTransaction, getTransactions } from "../../services/financeService";
 import Header from "../Header";
+import Modal from "../Modal";
 
 const TransactionView: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -14,6 +15,16 @@ const TransactionView: React.FC = () => {
       console.log(error.message);
     }
   };
+
+  const handleTransactionDelete = async (id: number) => {
+    try {
+      await deleteTransaction(id);
+      fetchTransactionsFromApi();
+
+    } catch (error: any){
+      console.log(error.message);
+    }
+  }
 
   useEffect(() => {
     fetchTransactionsFromApi();
@@ -35,6 +46,7 @@ const TransactionView: React.FC = () => {
               <th>Date</th>
               <th>Description</th>
               <th>Transaciton Type</th>
+              <th>Budget Category</th>
             </tr>
           </thead>
           <tbody>
@@ -46,16 +58,15 @@ const TransactionView: React.FC = () => {
                 <td>{t.date.toString()}</td>
                 <td>{t.description}</td>
                 <td>{t.transactionType === TransactionType.Income ? "Income" : "Expense"}</td>
+                <td>{t.budgetCategory?.categoryType === undefined ? "No Category" : t.budgetCategory.title}</td>
                 <td>
                 <button className="btn btn-text btn-sm" aria-label="Action button">
                   <span className="icon-[tabler--pencil] size-4"></span>
                 </button>
-                <button className="btn btn-text btn-sm" aria-label="Action button">
-                  <span className="icon-[tabler--trash] size-4"></span>
-                </button>
+                <Modal title="Delete" body="Are you sure you want to delete this record?" onConfirm={() => handleTransactionDelete(Number(t.id))}/>
                 <button className="btn btn-text btn-sm" aria-label="Action button">
                   <span className="icon-[tabler--dots-vertical] size-4"></span>
-                </button>
+                </button>    
                 </td>
               </tr>
             ))}

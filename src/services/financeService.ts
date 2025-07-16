@@ -133,10 +133,9 @@ export async function updateTransaction(transaction: Transaction):Promise<boolea
 }
 
 export async function deleteTransaction(transactionId: number):Promise<boolean>{
-  const url = new URL(`api/Transaction/DeleteTransaction/${transactionId}`, baseUrl);
+  const url = new URL(`api/Transaction/${transactionId}`, baseUrl);
   const response = await fetch(url, {
     method: 'DELETE',
-    body: JSON.stringify(transactionId)
   });
 
   if(!response.ok){
@@ -196,4 +195,4 @@ export async function getBudgetCategoryTypes(): Promise<string[]>{
   }
 
   return response.json();
-} 
+}

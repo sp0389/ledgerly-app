@@ -15,7 +15,7 @@
     "@fullcalendar/react": "^6.1.18",
     "@tailwindcss/vite": "^4.1.7",
     "apexcharts": "^4.7.0",
-    "flyonui": "^2.1.0",
+    "flyonui": "^2.3.0",
     "lodash": "^4.17.21",
     "react": "^19.1.0",
     "react-apexcharts": "^1.7.0",

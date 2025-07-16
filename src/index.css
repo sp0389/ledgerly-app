@@ -1,14 +1,14 @@
 @import "tailwindcss";
- @import "tailwindcss";
- @plugin "flyonui" {
+@plugin "flyonui" {
   themes: dark --default;
- }
+}
 @import "flyonui/variants.css";
-@source "./node_modules/flyonui/flyonui.js";
+@source "flyonui/flyonui.js";
 @plugin "@iconify/tailwind4";
 @import "flyonui/src/vendor/apexcharts.css";
 @import "flyonui/src/vendor/flatpickr.css";
 @import "flyonui/src/vendor/fullcalendar.css";
+@source "flyonui/dist/index.js";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
