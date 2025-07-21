@@ -1,9 +1,12 @@
 import type { Transaction } from "../types/transaction";
 import type { BudgetCategory, CategoryType } from "../types/budgetCategory";
+import { getBaseUrl } from "./authService";
 
 //TODO: split these functions into seperate files.
 
-const baseUrl = 'http://localhost:5007/';
+// const baseUrl = 'http://localhost:5007/';
+
+const baseUrl = getBaseUrl();
 
 export async function getTransactions(): Promise<Transaction[]> {
   const url = new URL('api/Transaction', baseUrl);
