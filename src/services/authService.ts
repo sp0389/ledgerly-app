@@ -4,7 +4,7 @@ export const getBaseUrl = ():string => {
   return "http://localhost:5007/";
 }
 
-export const getTokenFromApi = async (user: User):Promise<void> => {
+export const login = async (user: User):Promise<Boolean> => {
 
   const url = new URL('api/User/Login', getBaseUrl());
 
@@ -24,6 +24,8 @@ export const getTokenFromApi = async (user: User):Promise<void> => {
     const token = await response.text();
     localStorage.setItem('token', token);
   }
+
+  return true;
 }
 
 export const getToken = (): string => {
@@ -33,4 +35,8 @@ export const getToken = (): string => {
   }
 
   return localStorage.getItem('token') as string;
+}
+
+export const removeToken = (): void => {
+  localStorage.removeItem('token');
 }
