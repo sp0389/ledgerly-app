@@ -1,6 +1,6 @@
 import type { Transaction } from "../types/transaction";
 import type { BudgetCategory, CategoryType } from "../types/budgetCategory";
-import { getBaseUrl } from "./authService";
+import { getBaseUrl, getToken } from "./authService";
 
 //TODO: split these functions into seperate files.
 
@@ -10,7 +10,12 @@ const baseUrl = getBaseUrl();
 
 export async function getTransactions(): Promise<Transaction[]> {
   const url = new URL('api/Transaction', baseUrl);
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`,
+    }
+  });
   
   if (!response.ok) {
     throw new Error(`Failed to fetch transactions: ${response.status}`);
@@ -21,7 +26,12 @@ export async function getTransactions(): Promise<Transaction[]> {
 
 export async function getLastFiveTransactions(): Promise<Transaction[]>{
   const url = new URL(`api/Transaction/LastFive`, baseUrl);
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`,
+    },
+  });
 
   if(!response.ok){
     throw new Error(`Failed to fetch the last five transactions. ${response.status}`);
@@ -33,20 +43,30 @@ export async function getLastFiveTransactions(): Promise<Transaction[]>{
 export async function getTransactionById(id: number): Promise<Transaction> {
   const url = new URL(`api/Transaction/${id}`, baseUrl);
 
-  const reponse = await fetch(url);
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`,
+    }
+  });
 
-  if (!reponse.ok){
-    throw new Error(`Failed to fetch transactions: ${reponse.status}`);
+  if (!response.ok){
+    throw new Error(`Failed to fetch transactions: ${response.status}`);
   }
 
-  return await reponse.json();
+  return await response.json();
 }
 
 export async function getTransactionByCategory(categoryType: CategoryType)
   :Promise<Transaction> {
     const url = new URL(`api/Transaction/${categoryType}`, baseUrl);
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${getToken()}`,
+      }
+    });
 
     if (!response.ok){
       throw new Error(`Failed to fetch transactions with the provided category type: 
@@ -58,7 +78,12 @@ export async function getTransactionByCategory(categoryType: CategoryType)
 
 export async function getBudgetCategories(): Promise<BudgetCategory[]> {
   const url = new URL('api/BudgetCategory', baseUrl);
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`,
+    }
+  });
 
   if (!response.ok){
     throw new Error(`Failed to fetch budget categories: ${response.status}`)
@@ -72,7 +97,8 @@ export async function createTransaction(transaction: Transaction):Promise<boolea
   const response = await fetch(url, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${getToken()}`,
     },
     body: JSON.stringify(transaction)
   });
@@ -89,7 +115,8 @@ export async function createBiWeeklyTransaction(transaction: Transaction):Promis
   const response = await fetch(url, {
     method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${getToken()}`,
     },
     body: JSON.stringify(transaction)
   });
@@ -106,7 +133,8 @@ export async function createMonthlyTransaction(transaction: Transaction):Promise
   const response = await fetch(url, {
     method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${getToken()}`,
     },
     body: JSON.stringify(transaction)
   });
@@ -123,7 +151,8 @@ export async function updateTransaction(transaction: Transaction):Promise<boolea
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${getToken()}`,
     },
     body: JSON.stringify(transaction)
   });
@@ -139,6 +168,9 @@ export async function deleteTransaction(transactionId: number):Promise<boolean>{
   const url = new URL(`api/Transaction/${transactionId}`, baseUrl);
   const response = await fetch(url, {
     method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`,
+    }
   });
 
   if(!response.ok){
@@ -150,7 +182,13 @@ export async function deleteTransaction(transactionId: number):Promise<boolean>{
 
 export async function getIncomeTransactionBalance():Promise<number>{
   const url = new URL (`api/Transaction/IncomeBalance`, baseUrl);
-  const response = await fetch(url);
+
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`,
+    }
+  });
 
   if(!response.ok){
     throw new Error(`There was an error retrieving the income account balance. ${response.status}`);
@@ -161,7 +199,12 @@ export async function getIncomeTransactionBalance():Promise<number>{
 
 export async function getExpenseTransactionBalance():Promise<number>{
   const url = new URL (`api/Transaction/ExpenseBalance`, baseUrl);
-  const response = await fetch (url);
+  const response = await fetch (url, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`,
+    }
+  });
 
   if(!response.ok){
     throw new Error(`There was an error retrieving the expense account balance. ${response.status}`);
@@ -176,7 +219,8 @@ export async function createBudgetCategory(budgetCategory: BudgetCategory):Promi
   const response = await fetch(url, {
     method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${getToken()}`,
     },
     body: JSON.stringify(budgetCategory)
   });
@@ -191,7 +235,12 @@ export async function createBudgetCategory(budgetCategory: BudgetCategory):Promi
 export async function getBudgetCategoryTypes(): Promise<string[]>{
   const url = new URL(`api/BudgetCategory/BudgetCategoryTypes`, baseUrl);
 
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`,
+    }
+  })
 
   if (!response.ok){
     throw new Error(`Could not get budget category types. ${response.status}`);

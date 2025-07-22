@@ -28,13 +28,13 @@ export const login = async (user: User):Promise<Boolean> => {
   return true;
 }
 
-export const getToken = (): string => {
+export const getToken = (): string | null => {
   
   if(!localStorage.getItem('token')){
-    throw new Error("No token found in local storage. Please log in first.");
+    return null;
   }
 
-  return localStorage.getItem('token') as string;
+  return localStorage.getItem('token');
 }
 
 export const removeToken = (): void => {
