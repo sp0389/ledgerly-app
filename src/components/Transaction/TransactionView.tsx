@@ -1,6 +1,6 @@
 import { TransactionType, type Transaction } from "../../types/transaction";
 import { useState, useEffect } from "react";
-import { deleteTransaction, getTransactions } from "../../services/financeService";
+import { deleteTransaction, getTransactions } from "../../services/transactionService";
 import Header from "../Header";
 import Modal from "../Modal";
 

@@ -8,11 +8,11 @@ import BudgetCategorySelector from "../Input/BudgetCategoryTypeSelector";
 import ErrorPrompt from "../Input/ErrorPrompt";
 import BlockButton from "../BlockButton";
 import Header from "../Header";
-import { handleNewBudgetCategory } from "../../services/budgetCategoryService";
+import { handleNewBudgetCategory } from "../../factory/budgetCategoryFactory";
 import {
   createBudgetCategory,
   getBudgetCategoryTypes,
-} from "../../services/financeService";
+} from "../../services/budgetCategoryService";
 import Title from "../Input/TitleInput";
 
 const BudgetCategoryInput = () => {

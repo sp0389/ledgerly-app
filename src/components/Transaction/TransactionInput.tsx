@@ -18,14 +18,14 @@ import {
   createBiWeeklyTransaction,
   createMonthlyTransaction,
   createTransaction,
-  getBudgetCategories,
-} from "../../services/financeService";
+} from "../../services/transactionService";
+import { getBudgetCategories } from "../../services/budgetCategoryService";
 import BlockButton from "../BlockButton";
 import Header from "../Header";
 import {
   handleRepeatingTransaction,
   handleSingleTransaction,
-} from "../../services/transactionService";
+} from "../../factory/transactionFactory";
 
 interface TransactionInputProps {}
 
