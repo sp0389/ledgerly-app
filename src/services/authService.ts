@@ -28,7 +28,7 @@ export const login = async (user: User):Promise<Boolean> => {
   return true;
 }
 
-export const getToken = (): string | null => {
+export const getToken = ():string | null => {
   
   if(!localStorage.getItem('token')){
     return null;
@@ -37,6 +37,6 @@ export const getToken = (): string | null => {
   return localStorage.getItem('token');
 }
 
-export const removeToken = (): void => {
+export const removeToken = ():void => {
   localStorage.removeItem('token');
 }

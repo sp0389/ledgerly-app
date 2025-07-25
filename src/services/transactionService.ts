@@ -4,8 +4,9 @@ import { type CategoryType } from "../types/budgetCategory";
 
 const baseUrl = getBaseUrl();
 
-export async function getTransactions(): Promise<Transaction[]> {
+export const getTransactions = async ():Promise<Transaction[]> => {
   const url = new URL('api/Transaction', baseUrl);
+  
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -20,8 +21,9 @@ export async function getTransactions(): Promise<Transaction[]> {
   return await response.json();
 }
 
-export async function getLastFiveTransactions(): Promise<Transaction[]>{
+export const getLastFiveTransactions = async ():Promise<Transaction[]> => {
   const url = new URL(`api/Transaction/LastFive`, baseUrl);
+  
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -36,9 +38,9 @@ export async function getLastFiveTransactions(): Promise<Transaction[]>{
   return await response.json();
 }
 
-export async function getTransactionById(id: number): Promise<Transaction> {
+export const getTransactionById = async (id: number):Promise<Transaction> =>{ 
   const url = new URL(`api/Transaction/${id}`, baseUrl);
-
+  
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -53,7 +55,7 @@ export async function getTransactionById(id: number): Promise<Transaction> {
   return await response.json();
 }
 
-export async function getTransactionByCategory(categoryType: CategoryType) :Promise<Transaction> {
+export const getTransactionByCategory = async (categoryType: CategoryType):Promise<Transaction[]> => {
   const url = new URL(`api/Transaction/${categoryType}`, baseUrl);
 
   const response = await fetch(url, {
@@ -71,8 +73,9 @@ export async function getTransactionByCategory(categoryType: CategoryType) :Prom
   return await response.json();
 }
 
-export async function createTransaction(transaction: Transaction):Promise<boolean>{
+export const createTransaction = async (transaction: Transaction):Promise<boolean> => {
   const url = new URL(`api/Transaction/CreateTransaction/`, baseUrl);
+  
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -89,8 +92,9 @@ export async function createTransaction(transaction: Transaction):Promise<boolea
   return true;
 }
 
-export async function createBiWeeklyTransaction(transaction: Transaction):Promise<boolean>{
+export const createBiWeeklyTransaction = async (transaction: Transaction):Promise<boolean> => {
   const url = new URL(`api/Transaction/CreateBiWeeklyTransaction/${transaction}`, baseUrl);
+  
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -107,8 +111,9 @@ export async function createBiWeeklyTransaction(transaction: Transaction):Promis
   return true;
 }
 
-export async function createMonthlyTransaction(transaction: Transaction):Promise<boolean>{
+export const createMonthlyTransaction = async (transaction: Transaction):Promise<boolean> => {
   const url = new URL(`api/Transaction/CreateMonthlyTransaction/${transaction}`, baseUrl);
+  
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -125,8 +130,9 @@ export async function createMonthlyTransaction(transaction: Transaction):Promise
   return true;
 }
 
-export async function updateTransaction(transaction: Transaction):Promise<boolean>{
+export const updateTransaction = async (transaction:Transaction):Promise<boolean> => {
   const url = new URL(`api/Transaction/UpdateTransaction/${transaction}`, baseUrl);
+  
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
@@ -143,8 +149,9 @@ export async function updateTransaction(transaction: Transaction):Promise<boolea
   return true;
 }
 
-export async function deleteTransaction(transactionId: number):Promise<boolean>{
+export const deleteTransaction = async (transactionId: number):Promise<boolean> => {
   const url = new URL(`api/Transaction/${transactionId}`, baseUrl);
+  
   const response = await fetch(url, {
     method: 'DELETE',
     headers: {
@@ -159,7 +166,7 @@ export async function deleteTransaction(transactionId: number):Promise<boolean>{
   return true;
 }
 
-export async function getIncomeTransactionBalance():Promise<number>{
+export const getIncomeTransactionBalance = async ():Promise<number> =>{
   const url = new URL (`api/Transaction/IncomeBalance`, baseUrl);
 
   const response = await fetch(url, {
@@ -176,8 +183,9 @@ export async function getIncomeTransactionBalance():Promise<number>{
   return response.json();
 }
 
-export async function getExpenseTransactionBalance():Promise<number>{
+export const getExpenseTransactionBalance = async ():Promise<number> => {
   const url = new URL (`api/Transaction/ExpenseBalance`, baseUrl);
+  
   const response = await fetch (url, {
     method: 'GET',
     headers: {

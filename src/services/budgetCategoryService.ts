@@ -3,8 +3,9 @@ import { getBaseUrl, getToken } from "./authService";
 
 const baseUrl = getBaseUrl();
 
-export async function getBudgetCategories(): Promise<BudgetCategory[]> {
+export const getBudgetCategories = async():Promise<BudgetCategory[]> => {
   const url = new URL('api/BudgetCategory', baseUrl);
+  
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -19,7 +20,7 @@ export async function getBudgetCategories(): Promise<BudgetCategory[]> {
   return await response.json();
 }
 
-export async function createBudgetCategory(budgetCategory: BudgetCategory):Promise<boolean>{
+export const createBudgetCategory = async (budgetCategory: BudgetCategory):Promise<boolean> =>{
   const url = new  URL(`api/BudgetCategory`, baseUrl);
   
   const response = await fetch(url, {
@@ -38,7 +39,7 @@ export async function createBudgetCategory(budgetCategory: BudgetCategory):Promi
   return true;
 }
 
-export async function getBudgetCategoryTypes(): Promise<string[]>{
+export const getBudgetCategoryTypes = async():Promise<string[]> =>{
   const url = new URL(`api/BudgetCategory/BudgetCategoryTypes`, baseUrl);
 
   const response = await fetch(url, {
