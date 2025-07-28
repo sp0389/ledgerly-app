@@ -2,7 +2,7 @@ import BarChart from "../../components/Chart.tsx";
 import Card from "../../components/Card.tsx";
 import Layout from "../../components/Layout.tsx";
 import { useState, useEffect } from "react";
-import { getExpenseTransactionBalance, getIncomeTransactionBalance } from "../../services/financeService.ts";
+import { getExpenseTransactionBalance, getIncomeTransactionBalance } from "../../services/transactionService.ts";
 
 const Home = () => {
 

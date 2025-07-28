@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import CreateTransaction from "./assets/pages/CreateTransaction";
 import ViewTransactions from "./assets/pages/ViewTransactions";
 import CreateBudgetCategory from "./assets/pages/CreateBudgetCategory";
+import Login from "./assets/pages/Login";
+import Register from "./assets/pages/Register";
 
 const App = () => {
   //TODO: fetch the data on page load for main page.
@@ -14,6 +16,8 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
         <Route path="test" element={<Test />} />
         <Route path="transactions" element={<ViewTransactions />} />
         <Route path="newtransaction" element={<CreateTransaction />} />

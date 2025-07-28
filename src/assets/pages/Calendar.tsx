@@ -1,7 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { useEffect, useState } from "react";
-import { getTransactions } from "../../services/financeService";
+import { getTransactions } from "../../services/transactionService";
 import { type Transaction } from "../../types/transaction";
 
 type CalendarOptions = {
