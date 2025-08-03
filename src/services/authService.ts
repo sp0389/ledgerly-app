@@ -4,7 +4,7 @@ export const getBaseUrl = ():string => {
   return "http://localhost:5007/";
 }
 
-export const login = async (user: User):Promise<Boolean> => {
+export const login = async (user: User):Promise<boolean> => {
 
   const url = new URL('api/User/Login', getBaseUrl());
 
@@ -39,4 +39,24 @@ export const getToken = ():string | null => {
 
 export const removeToken = ():void => {
   localStorage.removeItem('token');
+}
+
+export const registerUser = async (username: string, password: string):Promise<boolean> => {
+  
+  const url = new URL(`'api/User/Register`, getBaseUrl());
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer: ${getToken()}`
+    },
+    body: JSON.stringify({ username, password })
+  });
+
+  if(!response.ok){
+    throw new Error(`Something went wrong when trying to register with your details. ${response.status}`);
+  }
+
+  return true;
 }
