@@ -3,6 +3,7 @@ import Credentials from "../../components/Input/Credentials";
 import BlockButton from "../../components/BlockButton";
 import Layout from "../../components/Layout";
 import { registerUser } from "../../services/authService";
+import { handleUser } from "../../factory/userFactory";
 
 
 const Register = () => {
@@ -11,9 +12,10 @@ const Register = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
 
   const sendCredsToApi = async () => {
+    const user = handleUser(username, password);
 
     try {
-      const registeredUser = await registerUser(username, password);
+      const registeredUser = await registerUser(user);
       //TODO: set an alert to prompt the user that their registration was successful. Then redirect.
       registeredUser ? setIsLoggedIn(true) : setIsLoggedIn(false);
 

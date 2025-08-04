@@ -41,7 +41,7 @@ export const removeToken = ():void => {
   localStorage.removeItem('token');
 }
 
-export const registerUser = async (username: string, password: string):Promise<boolean> => {
+export const registerUser = async (user:User):Promise<boolean> => {
   
   const url = new URL(`'api/User/Register`, getBaseUrl());
 
@@ -51,7 +51,7 @@ export const registerUser = async (username: string, password: string):Promise<b
       'Content-Type': 'application/json',
       'Authorization': `Bearer: ${getToken()}`
     },
-    body: JSON.stringify({ username, password })
+    body: JSON.stringify(user)
   });
 
   if(!response.ok){
