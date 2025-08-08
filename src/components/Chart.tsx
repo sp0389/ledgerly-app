@@ -1,19 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
-interface ChartProps {}
+interface ChartProps { }
 
 const Chart: React.FC<ChartProps> = () => {
+
+  const [incomeData, setIncomeData] = useState([]);
+  const [expenseData, setExpenseData] = useState([]);
+
+  const getApiDataForChart = async () => {
+    //TODO: API Call
+  }
+
+  useEffect(() => {
+    getApiDataForChart();
+  }, [incomeData, expenseData]);
+
   const chartOptions = {
     chart: {
       type: "line" as "line",
     },
     series: [
       {
-        name: "Series 1",
+        name: "Income",
         //TODO: update with actual API call for data.
-        data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+        data: [30, 40, 35, 50, 49, 60, 70, 91, 125, 130, 145],
       },
+      {
+        name: "Expense",
+        data: [10, 20, 25, 30, 39, 50, 60, 71, 110, 120, 130]
+      }
     ],
     colors: ["var(--color-primary)", "var(--color-base-100)"],
     xaxis: {
@@ -27,6 +43,8 @@ const Chart: React.FC<ChartProps> = () => {
         "Jul",
         "Aug",
         "Sep",
+        "Nov",
+        "Dec"
       ],
       labels: {
         style: {
