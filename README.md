@@ -1,54 +1,43 @@
-# React + TypeScript + Vite
+# Ledgerly
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ledgerly is a responsive web application built with React, TypeScript, and Tailwind CSS. It is designed to help track financial spending and income transactions.
 
-Currently, two official plugins are available:
+## Features
+- Create Transaction Records
+- Overview Transaction Records
+- Charts to Visualise Spending Trends
+- Export Transactions to CSV (TBD)
+- Create Budget Categories
+- Group Transactions into Budget Categories
+- Calendar to easily view transaction records by date
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ledgerly is designed to be intuitive and easy to use and consume the LedgerlyApi backend.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Requirements
+- Node.js (npm install)
+- A text editor such as (VSCode, NeoVim, etc)
+- Git
+  
+## Getting Started
+1. Clone the repository:
+```
+git clone https://github.com/sp0389/ledgerly-app.git
+```
+2. Change directory
+```
+cd ledgerly-app
+```
+4. Install deps
+```
+npm install
+```
+5. Run the application
+```
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Contributing
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit changes.
+4. Open a Pull Request.
