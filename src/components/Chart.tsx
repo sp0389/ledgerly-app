@@ -24,11 +24,11 @@ const Chart: React.FC<ChartProps> = () => {
       {
         name: "Income",
         //TODO: update with actual API call for data.
-        data: [30, 40, 35, 50, 49, 60, 70, 91, 125, 130, 145],
+        data: [5480, 5520, 5450, 5600, 5500, 5480, 5550, 5520, 5500, 5530, 5490, 5600],
       },
       {
         name: "Expense",
-        data: [10, 20, 25, 30, 39, 50, 60, 71, 110, 120, 130]
+        data: [4120, 4300, 4150, 4380, 4220, 4270, 4200, 4350, 4180, 4300, 4250, 4400]
       }
     ],
     colors: ["var(--color-primary)", "var(--color-base-100)"],

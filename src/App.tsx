@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import Home from "./assets/pages/Home";
-import Test from "./assets/pages/Test";
+import ViewCalendar from "./assets/pages/ViewCalendar";
 import { useEffect } from "react";
 import CreateTransaction from "./assets/pages/CreateTransaction";
 import ViewTransactions from "./assets/pages/ViewTransactions";
@@ -18,7 +18,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
-        <Route path="test" element={<Test />} />
+        <Route path="calendar" element={<ViewCalendar />} />
         <Route path="transactions" element={<ViewTransactions />} />
         <Route path="newtransaction" element={<CreateTransaction />} />
         <Route path="newbudget" element={<CreateBudgetCategory />} />
