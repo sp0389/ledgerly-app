@@ -13,6 +13,12 @@ Ledgerly is a responsive web application built with React, TypeScript, and Tailw
 
 Ledgerly is designed to be intuitive and easy to use and consume the LedgerlyApi backend.
 
+## Technology Stack Used
+- React with Vite
+- TypeScript
+- Charts.js
+- FlyonUI
+
 ## Requirements
 - Node.js (npm install)
 - A text editor such as (VSCode, NeoVim, etc)
