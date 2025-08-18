@@ -43,13 +43,12 @@ export const removeToken = ():void => {
 
 export const registerUser = async (user:User):Promise<boolean> => {
   
-  const url = new URL(`'api/User/Register`, getBaseUrl());
+  const url = new URL(`api/User/Register`, getBaseUrl());
 
   const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer: ${getToken()}`
     },
     body: JSON.stringify(user)
   });
@@ -59,4 +58,27 @@ export const registerUser = async (user:User):Promise<boolean> => {
   }
 
   return true;
+}
+
+export const validateUserToken = async ():Promise<boolean> => {
+  const url = new URL(`api/User/Validate/`, getBaseUrl());
+
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${getToken()}`,
+    }
+  });
+
+if (response.status === 200){
+  return true;
+}
+
+if (response.status === 401) {
+  removeToken();
+  return false;
+}
+
+throw new Error(`Something went wrong when trying to validate the token. ${response.status}`);
 }
