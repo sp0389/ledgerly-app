@@ -1,6 +1,4 @@
-interface SidebarProps {}
-
-const Sidebar: React.FC<SidebarProps> = () => {
+const Sidebar: React.FC = () => {
   return (
     <>
       <div className="w-64 min-w-64 aside-scroll top-16 z-20 h-[calc(100vh-5rem)] overflow-y-auto p-8 ps-0 max-lg:hidden lg:sticky rounded-lg">

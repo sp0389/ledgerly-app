@@ -5,7 +5,7 @@ interface ButtonProps {
 
 const BlockButton: React.FC<ButtonProps> = ({ label, onClick }) => {
   return (
-    <button className="btn btn-primary btn-block mt-2" onClick={onClick}>
+    <button className="btn btn-primary btn-block" onClick={onClick}>
       {label}
     </button>
   )
