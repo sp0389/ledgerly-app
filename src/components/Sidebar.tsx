@@ -28,7 +28,7 @@ const Sidebar: React.FC = () => {
                   <li>
                     <a
                       className="hover:border-base-content/60 hover:text-base-content/90 text-base-content/80 -ms-px flex items-center border-s-2 border-transparent px-3 py-1.5 text-sm"
-                      href="/"
+                      href="/home"
                     >
                       <span className="icon-[tabler--home] size-4 mr-2"></span>
                       Home

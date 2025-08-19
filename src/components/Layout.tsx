@@ -5,17 +5,20 @@ import Sidebar from "./Sidebar";
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   //TODO: might need to revist how we do this, but this is the functionality we want
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
 
   useEffect(() => {
-
-  }, [isLoggedIn]);
+  }, []);
 
   return (
     <div className="flex flex-col hscreen">
       <Navbar />
       <div className="flex flex-1">
-        <aside className="p-4">{isLoggedIn && <Sidebar />}</aside>
+        {isLoggedIn &&
+          <aside className="p-4">
+            <Sidebar />
+          </aside>
+        }
         <div className="flex-1 overflow-auto p-4">{children}</div>
       </div>
     </div>

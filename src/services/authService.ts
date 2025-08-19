@@ -82,3 +82,13 @@ if (response.status === 401) {
 
 throw new Error(`Something went wrong when trying to validate the token. ${response.status}`);
 }
+
+export const isUserLoggedIn = async ():Promise<boolean> => {
+  const token = getToken();
+
+  if(!token){
+    return false;
+  }
+
+  return await validateUserToken();
+}

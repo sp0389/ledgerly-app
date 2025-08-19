@@ -9,7 +9,7 @@ const Home = () => {
   const [income, setIncome] = useState<number>(0);
   const [expense, setExpense] = useState<number>(0);
 
-  const fetchIncomeFromApi = async () => {
+  const fetchBalancesFromApi = async () => {
     try {
       setIncome(await getIncomeTransactionBalance());
       setExpense(await getExpenseTransactionBalance());
@@ -20,8 +20,8 @@ const Home = () => {
   }
 
   useEffect(() =>{
-    fetchIncomeFromApi();
-  });
+    fetchBalancesFromApi();
+  },[]);
   
   return (
     <>

@@ -1,6 +1,4 @@
-interface NavBarProps {}
-
-const Navbar: React.FC<NavBarProps> = () => {
+const Navbar: React.FC = () => {
   return (
     <nav className="navbar shadow-base-300/20 shadow-sm bg-base-100 border-base-content/10 border-b sticky top-0 z-50 w-full">
       <div className="w-full md:flex md:items-center md:gap-2">
@@ -42,10 +40,10 @@ const Navbar: React.FC<NavBarProps> = () => {
         >
           <ul className="menu md:menu-horizontal gap-2 p-0 text-base max-md:mt-2">
             <li>
-              <a href="#">Home</a>
+              <a href="/">Login</a>
             </li>
             <li>
-              <a href="#">About</a>
+              <a href="/register">Register</a>
             </li>
           </ul>
         </div>
