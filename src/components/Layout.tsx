@@ -14,11 +14,10 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
     <div className="flex flex-col hscreen">
       <Navbar />
       <div className="flex flex-1">
-        {isLoggedIn &&
+        {isLoggedIn && 
           <aside className="p-4">
             <Sidebar />
-          </aside>
-        }
+          </aside>}   
         <div className="flex-1 overflow-auto p-4">{children}</div>
       </div>
     </div>

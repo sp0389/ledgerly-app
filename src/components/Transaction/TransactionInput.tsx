@@ -70,7 +70,6 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
 
         await createTransaction(transaction);
         navigate("/transactions");
-
       } catch (error: any) {
         setError(error.message);
       }
@@ -90,11 +89,9 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
         if (isBiWeekly) {
           await createBiWeeklyTransaction(repeatingTransaction);
           navigate("/transactions");
-
         } else {
           await createMonthlyTransaction(repeatingTransaction);
           navigate("/transactions");
-          
         }
       } catch (error: any) {
         setError(error.message);
@@ -112,10 +109,10 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
       }
     };
 
-    if (hasBudgetCategory){
-      try{
+    if (hasBudgetCategory) {
+      try {
         fetchBudgetCategoryTypesFromApi();
-      } catch(error: any){
+      } catch (error: any) {
         setError(error.message);
       }
     }
@@ -128,11 +125,10 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
     isRecurring && days.length === 0
       ? setError("Please choose days")
       : setError("");
-
   }, [days, isRecurring, hasBudgetCategory]);
 
   return (
-    <>
+    <div className="max-w-5xl mx-auto p-6">
       {error != "" && <ErrorPrompt value={error} />}
 
       <Header
@@ -140,7 +136,12 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
         description="Create a new transaction record."
       />
 
-      <Title label="Title" value={title} placeholderText="e.g. Rent Payment" onChange={setTitle} />
+      <Title
+        label="Title"
+        value={title}
+        placeholderText="e.g. Rent Payment"
+        onChange={setTitle}
+      />
 
       <AmountInput value={amount} onChange={setAmount} onError={setError} />
 
@@ -198,7 +199,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
       )}
 
       <BlockButton label="Submit" onClick={handleSubmit} />
-    </>
+    </div>
   );
 };
 

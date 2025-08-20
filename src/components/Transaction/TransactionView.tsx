@@ -1,6 +1,9 @@
 import { TransactionType, type Transaction } from "../../types/transaction";
 import { useState, useEffect } from "react";
-import { deleteTransaction, getTransactions } from "../../services/transactionService";
+import {
+  deleteTransaction,
+  getTransactions,
+} from "../../services/transactionService";
 import Header from "../Header";
 import Modal from "../Modal";
 
@@ -20,18 +23,17 @@ const TransactionView: React.FC = () => {
     try {
       await deleteTransaction(id);
       fetchTransactionsFromApi();
-
-    } catch (error: any){
+    } catch (error: any) {
       console.log(error.message);
     }
-  }
+  };
 
   useEffect(() => {
     fetchTransactionsFromApi();
   }, []);
 
   return (
-    <>
+    <div className="max-w-5xl mx-auto p-6">
       <div className="w-full overflow-x-auto">
         <Header
           label="Transactions"
@@ -57,23 +59,41 @@ const TransactionView: React.FC = () => {
                 <td>{t.amount}</td>
                 <td>{t.date.toString()}</td>
                 <td>{t.description}</td>
-                <td>{t.transactionType === TransactionType.Income ? "Income" : "Expense"}</td>
-                <td>{t.budgetCategory?.categoryType === undefined ? "No Category" : t.budgetCategory.title}</td>
                 <td>
-                <button className="btn btn-text btn-sm" aria-label="Action button">
-                  <span className="icon-[tabler--pencil] size-4"></span>
-                </button>
-                <Modal title="Delete" body="Are you sure you want to delete this record?" onConfirm={() => handleTransactionDelete(Number(t.id))}/>
-                <button className="btn btn-text btn-sm" aria-label="Action button">
-                  <span className="icon-[tabler--dots-vertical] size-4"></span>
-                </button>    
+                  {t.transactionType === TransactionType.Income
+                    ? "Income"
+                    : "Expense"}
+                </td>
+                <td>
+                  {t.budgetCategory?.categoryType === undefined
+                    ? "No Category"
+                    : t.budgetCategory.title}
+                </td>
+                <td>
+                  <button
+                    className="btn btn-text btn-sm"
+                    aria-label="Action button"
+                  >
+                    <span className="icon-[tabler--pencil] size-4"></span>
+                  </button>
+                  <Modal
+                    title="Delete"
+                    body="Are you sure you want to delete this record?"
+                    onConfirm={() => handleTransactionDelete(Number(t.id))}
+                  />
+                  <button
+                    className="btn btn-text btn-sm"
+                    aria-label="Action button"
+                  >
+                    <span className="icon-[tabler--dots-vertical] size-4"></span>
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 

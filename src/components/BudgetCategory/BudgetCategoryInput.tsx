@@ -44,21 +44,21 @@ const BudgetCategoryInput = () => {
   };
 
   const fetchBudgetCategoryTypesFromApi = async () => {
-    try{
+    try {
       const bct = await getBudgetCategoryTypes();
       setBudgetCategoryType(bct);
-    } catch (error: any){
+    } catch (error: any) {
       console.log(error.message);
       setError(error.message);
     }
-  }
+  };
 
   useEffect(() => {
     fetchBudgetCategoryTypesFromApi();
   }, []);
 
   return (
-    <>
+    <div className="max-w-5xl mx-auto p-6">
       {error != "" && <ErrorPrompt value={error} />}
 
       <Header
@@ -66,7 +66,12 @@ const BudgetCategoryInput = () => {
         description="Bundle your spending into categories."
       />
 
-      <Title label="Title" value={title} placeholderText="e.g. Entertainment" onChange={setTitle}/>
+      <Title
+        label="Title"
+        value={title}
+        placeholderText="e.g. Entertainment"
+        onChange={setTitle}
+      />
 
       <AmountInput value={amount} onChange={setAmount} onError={setError} />
 
@@ -92,7 +97,7 @@ const BudgetCategoryInput = () => {
       />
 
       <BlockButton label="Submit" onClick={handleSubmit} />
-    </>
+    </div>
   );
 };
 
