@@ -24,43 +24,43 @@ const Credentials: React.FC<CredentialsProps> = ({
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] text-white">
-      <div className="w-full max-w-xl rounded-2xl shadow-lg p-8" style={{ backgroundColor: "#332e3c" }}>
-        <h1 className="text-4xl font-bold text-center mb-3">{title}</h1>
-        <p className="text-center text-gray-400 text-lg mb-8">{description}</p>
+      <h1 className="text-4xl font-bold text-center mb-3">{title}</h1>
+      <p className="text-center text-gray-400 text-lg mb-8">{description}</p>
 
-        <div className="space-y-6">
+      <div className="space-y-6">
+        <input
+          className="w-full px-4 py-4 text-lg rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-400"
+          style={{ backgroundColor: "#332e3c" }}
+          type="text"
+          value={username}
+          placeholder="Enter username"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        <div className="relative">
           <input
-            className="w-full px-4 py-4 text-lg rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-400"
-            type="text"
-            value={username}
-            placeholder="Enter username"
-            onChange={(e) => setUsername(e.target.value)}
+            className="w-full px-4 py-4 text-lg rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-400"
+            style={{ backgroundColor: "#332e3c" }}
+            type={showPassword ? "text" : "password"}
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-
-          <div className="relative">
-            <input
-              className="w-full px-4 py-4 text-lg rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-400"
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 flex items-center text-gray-400 hover:text-white px-3"
-              aria-label="Toggle password visibility"
-            >
-              {showPassword ? (
-                <span className="icon-[tabler--eye-off] size-5"></span>
-              ) : (
-                <span className="icon-[tabler--eye] size-5"></span>
-              )}
-            </button>
-          </div>
-
-          <BlockButton label="Submit" onClick={sendCredsToApi} />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute inset-y-0 right-0 flex items-center text-gray-400 hover:text-white px-3"
+            aria-label="Toggle password visibility"
+          >
+            {showPassword ? (
+              <span className="icon-[tabler--eye-off] size-5"></span>
+            ) : (
+              <span className="icon-[tabler--eye] size-5"></span>
+            )}
+          </button>
         </div>
+
+        <BlockButton label="Submit" onClick={sendCredsToApi} />
       </div>
     </div>
   );
