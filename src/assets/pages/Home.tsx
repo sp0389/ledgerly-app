@@ -10,11 +10,15 @@ import {
 const Home = () => {
   const [income, setIncome] = useState<number>(0);
   const [expense, setExpense] = useState<number>(0);
+  const [balance, setBalance] = useState<number>(0);
 
   const fetchBalancesFromApi = async () => {
     try {
       setIncome(await getIncomeTransactionBalance());
       setExpense(await getExpenseTransactionBalance());
+      //TODO: api call for total balance
+      
+
     } catch (error: any) {
       console.log(error.messsage);
     }
@@ -31,6 +35,7 @@ const Home = () => {
           <div className="flex-1 grid grid-cols-4 gap-4">
             <Card title={"Income"} amount={income} />
             <Card title={"Expenses"} amount={expense} />
+            <Card title={"Balance"} amount={balance} />
             <div className="col-span-3">
               <BarChart />
             </div>

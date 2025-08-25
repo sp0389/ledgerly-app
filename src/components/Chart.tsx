@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
-interface ChartProps { }
+interface ChartProps {}
 
 const Chart: React.FC<ChartProps> = () => {
-
   const [incomeData, setIncomeData] = useState([]);
   const [expenseData, setExpenseData] = useState([]);
 
   const getApiDataForChart = async () => {
     //TODO: API Call
-  }
+  };
 
   useEffect(() => {
     getApiDataForChart();
@@ -18,18 +17,33 @@ const Chart: React.FC<ChartProps> = () => {
 
   const chartOptions = {
     chart: {
-      type: "line" as "line",
+      type: "bar" as "bar",
+    },
+    title: {
+      text: "Income vs Expense Breakdown",
+      colors: "var(--color-base-content)",
+    },
+    legend: {
+      labels: {
+        colors: "var(--color-base-content)",
+      },
     },
     series: [
       {
         name: "Income",
         //TODO: update with actual API call for data.
-        data: [5480, 5520, 5450, 5600, 5500, 5480, 5550, 5520, 5500, 5530, 5490, 5600],
+        data: [
+          5480, 5520, 5450, 5600, 5500, 5480, 5550, 5520, 5500, 5530, 5490,
+          5600,
+        ],
       },
       {
         name: "Expense",
-        data: [4120, 4300, 4150, 4380, 4220, 4270, 4200, 4350, 4180, 4300, 4250, 4400]
-      }
+        data: [
+          4120, 4300, 4150, 4380, 4220, 4270, 4200, 4350, 4180, 4300, 4250,
+          4400,
+        ],
+      },
     ],
     colors: ["var(--color-primary)", "var(--color-base-100)"],
     xaxis: {
@@ -43,8 +57,9 @@ const Chart: React.FC<ChartProps> = () => {
         "Jul",
         "Aug",
         "Sep",
+        "Oct",
         "Nov",
-        "Dec"
+        "Dec",
       ],
       labels: {
         style: {
