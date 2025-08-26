@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import {
   getExpenseTransactionBalance,
   getIncomeTransactionBalance,
+  getTotalTransactionBalance,
 } from "../../services/transactionService.ts";
 
 const Home = () => {
@@ -16,9 +17,7 @@ const Home = () => {
     try {
       setIncome(await getIncomeTransactionBalance());
       setExpense(await getExpenseTransactionBalance());
-      //TODO: api call for total balance
-      
-
+      setBalance(await getTotalTransactionBalance());
     } catch (error: any) {
       console.log(error.messsage);
     }

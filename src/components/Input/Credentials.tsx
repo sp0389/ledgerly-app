@@ -27,7 +27,7 @@ const Credentials: React.FC<CredentialsProps> = ({
       <h1 className="text-4xl font-bold text-center mb-3">{title}</h1>
       <p className="text-center text-gray-400 text-lg mb-8">{description}</p>
 
-      <div className="space-y-6">
+      <div className="space-y-6 w-full max-w-md">
         <input
           className="w-full px-4 py-4 text-lg rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-400"
           style={{ backgroundColor: "#332e3c" }}

@@ -166,6 +166,23 @@ export const deleteTransaction = async (transactionId: number):Promise<boolean> 
   return true;
 }
 
+export const getTotalTransactionBalance = async ():Promise<number> => {
+  const url = new URL (`api/Transaction/TotalBalance`, baseUrl);
+
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`
+    }
+  });
+
+  if(!response.ok){
+    throw new Error(`There was an error retrieving the total transaction balance. ${response.status}`)
+  }
+
+  return response.json();
+}
+
 export const getIncomeTransactionBalance = async ():Promise<number> =>{
   const url = new URL (`api/Transaction/IncomeBalance`, baseUrl);
 
