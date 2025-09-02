@@ -18,6 +18,7 @@ import {
   createBiWeeklyTransaction,
   createMonthlyTransaction,
   createTransaction,
+  createWeeklyTransaction,
 } from "../../services/transactionService";
 import { getBudgetCategories } from "../../services/budgetCategoryService";
 import BlockButton from "../BlockButton";
@@ -41,6 +42,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
   const [occurrences, setOccurrences] = useState<number>(0);
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [isRecurring, setIsRecurring] = useState<boolean>(false);
+  const [isWeekly, setIsWeekly] = useState<boolean>(false);
   const [isBiWeekly, setIsBiWeekly] = useState<boolean>(false);
   const [isMonthly, setIsMonthly] = useState<boolean>(false);
   const [days, setDays] = useState<DayOfWeek[]>([]);
@@ -86,16 +88,18 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
           transactionType,
           selectedBudgetCategoryId
         );
-        if (isBiWeekly) {
+        if (isWeekly) {
+        //TODO: Create the Weekly
+          await createWeeklyTransaction(repeatingTransaction);
+        } else if(isBiWeekly) {
           await createBiWeeklyTransaction(repeatingTransaction);
-          navigate("/transactions");
         } else {
           await createMonthlyTransaction(repeatingTransaction);
-          navigate("/transactions");
         }
       } catch (error: any) {
         setError(error.message);
       }
+      navigate("/transactions");
     }
   };
 
@@ -157,11 +161,12 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
 
       {isRecurring && (
         <div>
+          <CheckBoxInput onChange={setIsWeekly} label="Weekly" />
           <CheckBoxInput onChange={setIsBiWeekly} label="Biweekly" />
           <CheckBoxInput onChange={setIsMonthly} label="Monthly" />
 
           {isBiWeekly && isMonthly && (
-            <ErrorPrompt value="Please select either Biweekly or Monthly, not both." />
+            <ErrorPrompt value="Please select either Weekly, Biweekly or Monthly, not both." />
           )}
 
           <OccurrenceSelector
