@@ -92,6 +92,25 @@ export const createTransaction = async (transaction: Transaction):Promise<boolea
   return true;
 }
 
+export const createWeeklyTransaction = async (transaction: Transaction):Promise<boolean> => {
+  const url = new URL(`api/Transaction/CreateWeeklyTransaction/${transaction}`, baseUrl);
+  
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify(transaction)
+  });
+
+  if(!response.ok){
+    throw new Error(`There was an error creating the bi-weekly transaction. ${response.status}`);
+  }
+
+  return true;
+}
+
 export const createBiWeeklyTransaction = async (transaction: Transaction):Promise<boolean> => {
   const url = new URL(`api/Transaction/CreateBiWeeklyTransaction/${transaction}`, baseUrl);
   

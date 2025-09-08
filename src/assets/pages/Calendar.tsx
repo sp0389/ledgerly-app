@@ -21,7 +21,7 @@ const Calendar: React.FC = () => {
         (t: Transaction) => ({
           title: t.title,
           start: t.date,
-          end: t.endDate,
+          end: t.endDate || undefined,
         })
       );
 
