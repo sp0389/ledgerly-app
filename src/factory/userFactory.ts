@@ -1,8 +1,8 @@
 import type { User } from "../types/user"
 
-export const handleUser = (username: string, password: string):User => {
+export const handleUser = (email: string, password: string):User => {
   const user: User = {
-    username: username,
+    email: email,
     password: password
   }
   return user;

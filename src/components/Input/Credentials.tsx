@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import BlockButton from "../BlockButton";
 
 interface CredentialsProps {
-  username: string;
+  email: string;
   password: string;
   title: string;
   description: string;
-  setUsername: (value: string) => void;
+  setEmail: (value: string) => void;
   setPassword: (value: string) => void;
   sendCredsToApi: () => void;
 }
 
 const Credentials: React.FC<CredentialsProps> = ({
-  username,
+  email,
   password,
   title,
   description,
-  setUsername,
+  setEmail,
   setPassword,
   sendCredsToApi,
 }) => {
@@ -32,9 +32,9 @@ const Credentials: React.FC<CredentialsProps> = ({
           className="w-full px-4 py-4 text-lg rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-400"
           style={{ backgroundColor: "#332e3c" }}
           type="text"
-          value={username}
-          placeholder="Enter username"
-          onChange={(e) => setUsername(e.target.value)}
+          value={email}
+          placeholder="Enter email"
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <div className="relative">

@@ -6,14 +6,14 @@ import { registerUser } from "../../services/authService";
 import { handleUser } from "../../factory/userFactory";
 
 const Register = () => {
-  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
   const sendCredsToApi = async () => {
-    const user = handleUser(username, password);
+    const user = handleUser(email, password);
 
     try {
       const registeredUser = await registerUser(user);
@@ -39,9 +39,9 @@ const Register = () => {
         <Credentials
           title="Register"
           description="Register a new account"
-          username={username}
+          email={email}
           password={password}
-          setUsername={setUsername}
+          setEmail={setEmail}
           setPassword={setPassword}
           sendCredsToApi={sendCredsToApi}
         />

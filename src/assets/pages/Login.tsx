@@ -6,14 +6,14 @@ import { handleUser } from "../../factory/userFactory";
 import { useNavigate } from "react-router";
 
 const Login = () => {
-  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
   const sendLoginDataToApi = async () => {
-    const user = handleUser(username, password);
+    const user = handleUser(email, password);
 
     try{
       const loginUser = await login(user);
@@ -36,9 +36,9 @@ const Login = () => {
       <Credentials
         title="Ledgerly"
         description="Simplify Your Spending. Maximize Your Saving."
-        username={username}
+        email={email}
         password={password}
-        setUsername={setUsername}
+        setEmail={setEmail}
         setPassword={setPassword}
         sendCredsToApi={sendLoginDataToApi}
       />
