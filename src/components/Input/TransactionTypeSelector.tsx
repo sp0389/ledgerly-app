@@ -14,7 +14,7 @@ const TransactionTypeSelector: React.FC<TransactionTypeSelectorProps> = ({
   };
 
   return (
-    <div>
+    <div className="mt-3 mb-3">
       <label className="label-text">
         Type:
         <span>&nbsp;&nbsp;</span>

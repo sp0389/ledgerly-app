@@ -39,7 +39,7 @@ const BudgetCategoryTypeSelector: React.FC<BudgetCategoryTypeSelectorProps> = ({
   };
 
   return (
-    <div className="mt-2">
+    <div className="mt-3 mb-3">
       <label className="label-text inline">
         Budget Category:
         <span>&nbsp;&nbsp;</span>

@@ -23,7 +23,7 @@ const BudgetCategorySelector: React.FC<BudgetCategorySelectorProps> = ({
           <select onChange={(e) => onChange(Number(e.target.value))}>
             {budgetCategory.map((bc) => (
               <option key={bc.id} value={bc.id}>
-                {bc.title}
+                {bc.description}
               </option>
             ))}
           </select>

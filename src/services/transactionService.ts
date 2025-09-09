@@ -93,7 +93,7 @@ export const createTransaction = async (transaction: Transaction):Promise<boolea
 }
 
 export const createWeeklyTransaction = async (transaction: Transaction):Promise<boolean> => {
-  const url = new URL(`api/Transaction/CreateWeeklyTransaction/${transaction}`, baseUrl);
+  const url = new URL(`api/Transaction/CreateWeeklyTransaction/`, baseUrl);
   
   const response = await fetch(url, {
     method: 'POST',
@@ -112,7 +112,7 @@ export const createWeeklyTransaction = async (transaction: Transaction):Promise<
 }
 
 export const createBiWeeklyTransaction = async (transaction: Transaction):Promise<boolean> => {
-  const url = new URL(`api/Transaction/CreateBiWeeklyTransaction/${transaction}`, baseUrl);
+  const url = new URL(`api/Transaction/CreateBiWeeklyTransaction/`, baseUrl);
   
   const response = await fetch(url, {
     method: 'POST',
@@ -131,7 +131,7 @@ export const createBiWeeklyTransaction = async (transaction: Transaction):Promis
 }
 
 export const createMonthlyTransaction = async (transaction: Transaction):Promise<boolean> => {
-  const url = new URL(`api/Transaction/CreateMonthlyTransaction/${transaction}`, baseUrl);
+  const url = new URL(`api/Transaction/CreateMonthlyTransaction/`, baseUrl);
   
   const response = await fetch(url, {
     method: 'POST',

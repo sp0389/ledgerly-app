@@ -59,7 +59,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    if (!isBiWeekly && !isMonthly) {
+    if (!isRecurring) {
       try {
         const transaction = handleSingleTransaction(
           title,
@@ -91,7 +91,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
         if (isWeekly) {
         //TODO: Create the Weekly
           await createWeeklyTransaction(repeatingTransaction);
-        } else if(isBiWeekly) {
+        } else if (isBiWeekly) {
           await createBiWeeklyTransaction(repeatingTransaction);
         } else {
           await createMonthlyTransaction(repeatingTransaction);
@@ -165,8 +165,8 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
           <CheckBoxInput onChange={setIsBiWeekly} label="Biweekly" />
           <CheckBoxInput onChange={setIsMonthly} label="Monthly" />
 
-          {isBiWeekly && isMonthly && (
-            <ErrorPrompt value="Please select either Weekly, Biweekly or Monthly, not both." />
+          {( (isWeekly && isBiWeekly) || (isWeekly && isMonthly) || (isBiWeekly && isMonthly) ) && (
+            <ErrorPrompt value="Please select either Weekly, Biweekly or Monthly." />
           )}
 
           <OccurrenceSelector
