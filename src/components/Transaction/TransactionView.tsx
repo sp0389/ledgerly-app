@@ -60,9 +60,7 @@ const TransactionView: React.FC = () => {
                 <td>{t.date.toString()}</td>
                 <td>{t.description}</td>
                 <td>
-                  {t.transactionType === TransactionType.Income
-                    ? "Income"
-                    : "Expense"}
+                  {t.transactionType}
                 </td>
                 <td>
                   {t.budgetCategory?.categoryType === undefined

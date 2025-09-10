@@ -235,3 +235,39 @@ export const getExpenseTransactionBalance = async ():Promise<number> => {
 
   return response.json();
 }
+
+//TODO: update the year to be dynamic based on the current year.
+export const getMonthlyIncomeTransactionAmounts = async ():Promise<number[]> => {
+  const url = new URL (`api/Transaction/MonthlyIncomeAmounts/${2025}`, baseUrl);
+
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`,
+    }
+  });
+
+  if (!response.ok){
+    throw new Error(`There was an error retrieving the monthly income transaction amounts. ${response.status}`);
+  }
+
+  return response.json();
+}
+
+//TODO: update the year to be dynamic based on the current year.
+export const getMonthlyExpenseTransactionAmounts = async ():Promise<number[]> => {
+  const url = new URL (`api/Transaction/MonthlyExpenseAmounts/${2025}`, baseUrl);
+
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`,
+    }
+  });
+
+  if (!response.ok){
+    throw new Error(`There was an error retrieving the monthly expense transaction amounts. ${response.status}`);
+  }
+
+  return response.json();
+}

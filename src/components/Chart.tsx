@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
+import { getMonthlyExpenseTransactionAmounts, getMonthlyIncomeTransactionAmounts } from "../services/transactionService";
 
 interface ChartProps {}
 
 const Chart: React.FC<ChartProps> = () => {
-  const [incomeData, setIncomeData] = useState([]);
-  const [expenseData, setExpenseData] = useState([]);
+  const [incomeData, setIncomeData] = useState<number[]>([]);
+  const [expenseData, setExpenseData] = useState<number[]>([]);
 
   const getApiDataForChart = async () => {
-    //TODO: API Call
+    try {
+      const incomeData = await getMonthlyIncomeTransactionAmounts();
+      setIncomeData(incomeData);
+      const expenseData = await getMonthlyExpenseTransactionAmounts();
+      setExpenseData(expenseData);
+    }
+    catch (error: any) {
+      console.log(error.message);
+    }
   };
 
   useEffect(() => {
     getApiDataForChart();
-  }, [incomeData, expenseData]);
+  }, []);
 
   const chartOptions = {
     chart: {
@@ -31,18 +40,11 @@ const Chart: React.FC<ChartProps> = () => {
     series: [
       {
         name: "Income",
-        //TODO: update with actual API call for data.
-        data: [
-          5480, 5520, 5450, 5600, 5500, 5480, 5550, 5520, 5500, 5530, 5490,
-          5600,
-        ],
+        data: incomeData,
       },
       {
         name: "Expense",
-        data: [
-          4120, 4300, 4150, 4380, 4220, 4270, 4200, 4350, 4180, 4300, 4250,
-          4400,
-        ],
+        data: expenseData,
       },
     ],
     colors: ["var(--color-primary)", "var(--color-base-100)"],
