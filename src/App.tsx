@@ -7,6 +7,7 @@ import ViewTransactions from "./assets/pages/ViewTransactions";
 import CreateBudgetCategory from "./assets/pages/CreateBudgetCategory";
 import Login from "./assets/pages/Login";
 import Register from "./assets/pages/Register";
+import Logout from "./assets/pages/Logout";
 
 const App = () => {
   //TODO: fetch the data on page load for main page.
@@ -16,6 +17,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="logout" element={<Logout />} />
         <Route path="home" element={<Home />} />
         <Route path="register" element={<Register />} />
         <Route path="calendar" element={<ViewCalendar />} />

@@ -1,4 +1,23 @@
+import { useEffect, useState } from "react";
+import { isUserLoggedIn } from "../services/authService";
+
 const Navbar: React.FC = () => {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const checkIfUserIsLoggedIn = async () => {
+    try {
+      const check = await isUserLoggedIn();
+      setIsLoggedIn(check);
+    } catch (error:any) {
+      console.log(error.message);
+    }   
+  }
+
+  useEffect(() => {
+    checkIfUserIsLoggedIn();
+  },[]);
+
   return (
     <nav className="navbar shadow-base-300/20 shadow-sm bg-base-100 border-base-content/10 border-b sticky top-0 z-50 w-full">
       <div className="w-full md:flex md:items-center md:gap-2">
@@ -39,12 +58,20 @@ const Navbar: React.FC = () => {
           className="md:navbar-end collapse hidden grow basis-full overflow-hidden transition-[height] duration-300 max-md:w-full"
         >
           <ul className="menu md:menu-horizontal gap-2 p-0 text-base max-md:mt-2">
-            <li>
-              <a href="/">Login</a>
-            </li>
-            <li>
-              <a href="/register">Register</a>
-            </li>
+            {!isLoggedIn ? (
+              <>
+                <li>
+                  <a href="/">Login</a>
+                </li>
+                <li>
+                  <a href="/register">Register</a>
+                </li>
+              </>
+            ) : (
+              <li>
+                <a href="/logout">Logout</a>
+              </li>
+            )}
           </ul>
         </div>
       </div>

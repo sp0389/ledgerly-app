@@ -1,4 +1,4 @@
-import { TransactionType, type Transaction } from "../../types/transaction";
+import { type Transaction } from "../../types/transaction";
 import { useState, useEffect } from "react";
 import {
   deleteTransaction,

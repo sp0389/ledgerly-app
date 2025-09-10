@@ -28,7 +28,6 @@ const Register = () => {
 
   useEffect(() => {
     if(isLoggedIn){
-      //TODO: redirect to main page.
       navigate('/home');
     }
   },[isLoggedIn]);
