@@ -20,32 +20,23 @@ const Modal: React.FC<ModalProps> = ({ onConfirm, title, body }) => {
       </button>
 
       {isOpen && (
-        <div
-          id="basic-modal"
-          className="overlay modal opacity-100 duration-300"
-          role="dialog"
-          tabIndex={-1}
-        >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h3 className="modal-title">{title}</h3>
-              </div>
-              <div className="modal-body">
-                {body}
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-soft btn-secondary"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Close
-                </button>
-                <button type="button" className="btn btn-primary" onClick={onConfirm}>
-                  Yes
-                </button>
-              </div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm fade-in">
+          <div className="w-full max-w-md rounded-2xl bg-base-100 p-6 shadow-2xl ring-1 ring-primary/20">
+            <div className="modal-header mb-2">
+              <h3 className="modal-title text-xl font-bold text-primary">{title}</h3>
+            </div>
+            <div className="modal-body mb-4 text-base-content/80">{body}</div>
+            <div className="modal-footer flex gap-2 justify-end">
+              <button
+                type="button"
+                className="btn btn-soft btn-secondary"
+                onClick={() => setIsOpen(false)}
+              >
+                Close
+              </button>
+              <button type="button" className="btn btn-primary" onClick={onConfirm}>
+                Yes
+              </button>
             </div>
           </div>
         </div>

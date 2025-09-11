@@ -62,6 +62,7 @@ const BudgetCategoryInput = () => {
       {error != "" && <ErrorPrompt value={error} />}
 
       <Header
+        icon={<span className="icon-[tabler--category]"></span>}
         label="Budget"
         description="Bundle your spending into categories."
       />

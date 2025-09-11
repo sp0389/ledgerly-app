@@ -36,6 +36,7 @@ const TransactionView: React.FC = () => {
     <div className="max-w-8xl mx-auto p-6">
       <div className="w-full overflow-x-auto">
         <Header
+          icon={<span className="icon-[tabler--history]"></span>}
           label="Transactions"
           description="Keep track of every transaction you have recorded."
         />

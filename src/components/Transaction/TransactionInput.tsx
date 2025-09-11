@@ -136,6 +136,7 @@ const TransactionInput: React.FC<TransactionInputProps> = () => {
       {error != "" && <ErrorPrompt value={error} />}
 
       <Header
+        icon={<span className="icon-[tabler--report-money]"></span>}
         label="Transaction Record"
         description="Create a new transaction record."
       />
