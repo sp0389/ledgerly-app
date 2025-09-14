@@ -1,4 +1,4 @@
-import type { Transaction } from "../types/transaction";
+import type { PagedTransactions, Transaction } from "../types/transaction";
 import { getBaseUrl, getToken } from "./authService";
 import { type CategoryType } from "../types/budgetCategory";
 
@@ -15,6 +15,23 @@ export const getTransactions = async ():Promise<Transaction[]> => {
   });
   
   if (!response.ok) {
+    throw new Error(`Failed to fetch transactions: ${response.status}`);
+  }
+
+  return await response.json();
+}
+
+export const getPagedTransactions = async(page: number):Promise<PagedTransactions> => {
+  const url = new URL(`api/Transaction/PagedTransactions?page=${page}`, baseUrl);
+  
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`,
+    },
+  });
+
+  if (!response.ok){
     throw new Error(`Failed to fetch transactions: ${response.status}`);
   }
 

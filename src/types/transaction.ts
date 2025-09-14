@@ -15,6 +15,13 @@ export interface Transaction {
   budgetCategory?: BudgetCategory;
 }
 
+export interface PagedTransactions {
+  page: number;
+  pageSize: number;
+  totalCount: number;
+  transactions: Transaction[];
+}
+
 export enum TransactionType {
   Income,
   Expense
