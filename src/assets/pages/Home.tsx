@@ -7,24 +7,40 @@ import {
   getIncomeTransactionBalance,
   getTotalTransactionBalance,
 } from "../../services/transactionService.ts";
+import { isUserLoggedIn } from "../../services/authService.ts";
+import { useNavigate } from "react-router";
 
 const Home = () => {
   const [income, setIncome] = useState<number>(0);
   const [expense, setExpense] = useState<number>(0);
   const [balance, setBalance] = useState<number>(0);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  const navigate = useNavigate();
+
+  const checkUserLoginStatus = async () => {
+    const loggedIn = await isUserLoggedIn();
+    setIsLoggedIn(loggedIn);
+
+    if (!loggedIn) {
+      navigate("/login");
+    }
+  }
 
   const fetchBalancesFromApi = async () => {
     try {
       setIncome(await getIncomeTransactionBalance());
       setExpense(await getExpenseTransactionBalance());
       setBalance(await getTotalTransactionBalance());
+
     } catch (error: any) {
-      console.log(error.messsage);
+      console.log(error.message);
     }
   };
 
   useEffect(() => {
     fetchBalancesFromApi();
+    checkUserLoginStatus();
   }, []);
 
   return (

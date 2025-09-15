@@ -29,7 +29,7 @@ const TransactionView: React.FC = () => {
         fetchTransactionsFromApi(pagedTransactions.page);
       }
     } catch (error: any) {
-      console.error(error.message);
+      console.log(error.message);
     }
   };
 
@@ -87,7 +87,7 @@ const TransactionView: React.FC = () => {
                   </button>
                 </td>
               </tr>
-            ))};
+            ))}
           </tbody>
         </table>
 
