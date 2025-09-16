@@ -3,7 +3,7 @@ interface CardProps {
   amount: number;
 }
 
-const Card: React.FC<CardProps> = ({ title, amount }) => {
+const TransactionBalanceCard: React.FC<CardProps> = ({ title, amount }) => {
   return (
     <div className="fade-in overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 via-base-200/30 to-secondary/10 p-6 shadow-xl ring-1 ring-primary/20 transition-all hover:scale-105">
       <div className="flex flex-col gap-2">
@@ -15,4 +15,4 @@ const Card: React.FC<CardProps> = ({ title, amount }) => {
     </div>
   );
 };
-export default Card;
+export default TransactionBalanceCard;

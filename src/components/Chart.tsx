@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { getMonthlyExpenseTransactionAmounts, getMonthlyIncomeTransactionAmounts } from "../services/transactionService";
 
-interface ChartProps {}
+interface ChartProps { }
 
 const Chart: React.FC<ChartProps> = () => {
   const [incomeData, setIncomeData] = useState<number[]>([]);
@@ -29,8 +29,10 @@ const Chart: React.FC<ChartProps> = () => {
       type: "bar" as "bar",
     },
     title: {
-      text: "Income vs Expense Breakdown",
-      colors: "var(--color-base-content)",
+      text: "",
+      style: {
+        color: "var(--color-base-content)",
+      },
     },
     legend: {
       labels: {
@@ -87,12 +89,17 @@ const Chart: React.FC<ChartProps> = () => {
 
   return (
     <div>
-      <ReactApexChart
-        options={chartOptions}
-        series={chartOptions.series}
-        type="bar"
-        height={350}
-      />
+      <div className="col-span-3">
+        <div className="fade-in rounded-2xl bg-base-200/60 p-6 shadow-xl ring-1 ring-primary/20">
+          <h3 className="text-xl font-bold text-primary mb-4">Income vs Expense</h3>
+          <ReactApexChart
+            options={chartOptions}
+            series={chartOptions.series}
+            type="bar"
+            height={350}
+          />
+        </div>
+      </div>
     </div>
   );
 };
