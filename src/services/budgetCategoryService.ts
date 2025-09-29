@@ -1,4 +1,4 @@
-import type { BudgetCategory } from "../types/budgetCategory";
+import type { BudgetCategory, BudgetCategorySummary } from "../types/budgetCategory";
 import { getBaseUrl, getToken } from "./authService";
 
 const baseUrl = getBaseUrl();
@@ -51,6 +51,23 @@ export const getBudgetCategoryTypes = async():Promise<string[]> =>{
 
   if (!response.ok){
     throw new Error(`Could not get budget category types. ${response.status}`);
+  }
+
+  return response.json();
+}
+
+export const getBudgetCategorySummary = async():Promise<BudgetCategorySummary[]> => {
+  const url = new URL(`api/BudgetCategory/Summary`, baseUrl);
+
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    }
+  });
+
+  if (!response.ok){
+    throw new Error(`Could not get budget category summary. ${response.status}`);
   }
 
   return response.json();

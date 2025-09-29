@@ -11,6 +11,13 @@ export interface BudgetCategory {
   transactions?: Transaction[];
 }
 
+export interface BudgetCategorySummary {
+  id: number;
+  title: string;
+  availableAmount: number;
+  spentAmount: number;
+}
+
 export enum CategoryType {
   Utilities,
   Entertainment,
